@@ -1,0 +1,178 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_tab_menu_bar_height">42dp</dimen>
+    <dimen name="common_ui_button_width">74dp</dimen>
+    <dimen name="common_ui_button_height">26dp</dimen>
+    <dimen name="common_ui_button_frame_height">30dp</dimen>
+    <dimen name="common_ui_mode_height">20dp</dimen>
+    <dimen name="common_ui_down_width">7dp</dimen>
+    <dimen name="common_ui_down_height">4dp</dimen>
+    <dimen name="common_ui_mode_margin_bottom">16dp</dimen>
+
+
+    <dimen name="common_ui_main_ritht_width">300dp</dimen>
+    <dimen name="common_ui_height_30">30dp</dimen>
+    <dimen name="common_ui_width_35">35dp</dimen>
+    <dimen name="common_ui_width_56">56dp</dimen>
+    <dimen name="common_ui_width_18">18dp</dimen>
+    <dimen name="common_ui_height_19">56dp</dimen>
+    <dimen name="common_ui_size_44">44dp</dimen>
+    <dimen name="common_ui_size_38">38dp</dimen>
+    <dimen name="common_ui_size_60">60dp</dimen>
+    <dimen name="common_ui_size_265">265dp</dimen>
+    <dimen name="common_ui_size_40">40dp</dimen>
+    <dimen name="common_ui_size_46">46dp</dimen>
+    <dimen name="common_ui_size_26">26dp</dimen>
+    <dimen name="common_ui_size_20">20dp</dimen>
+    <dimen name="common_ui_size_15">15dp</dimen>
+    <dimen name="common_ui_size_50">50dp</dimen>
+    <dimen name="common_ui_size_30">30dp</dimen>
+    <dimen name="common_ui_size_280">280dp</dimen>
+    <dimen name="common_ui_main_left_size">495dp</dimen>
+    <dimen name="common_ui_main_left_size_2">505dp</dimen>
+    <dimen name="common_ui_coupons_width">200dp</dimen>
+
+    <dimen name="common_ui_net_layout_width">290dp</dimen>
+    <dimen name="common_ui_popupwindow_width">117dp</dimen>
+
+    <dimen name="sub_common_ui_birtday_width">300dp</dimen>
+    <dimen name="sub_common_ui_birtday_height">250dp</dimen>
+
+    <dimen name="common_ui_size_400">400dp</dimen>
+    <dimen name="common_ui_size_310">310dp</dimen>
+    <dimen name="common_ui_size_330">330dp</dimen>
+    <dimen name="common_ui_size_390">390dp</dimen>
+    <dimen name="common_ui_size_340">340dp</dimen>
+    <dimen name="common_ui_size_500">500dp</dimen>
+    <dimen name="common_ui_size_200">200dp</dimen>
+    <dimen name="common_ui_size_371">371dp</dimen>
+    <dimen name="common_ui_size_361">361dp</dimen>
+    <dimen name="common_ui_size_153">153dp</dimen>
+    <dimen name="common_ui_size_130">130dp</dimen>
+    <dimen name="common_ui_size_350">350dp</dimen>
+    <dimen name="common_ui_size_286">286dp</dimen>
+    <dimen name="common_ui_size_180">180dp</dimen>
+    <dimen name="common_ui_size_250">250dp</dimen>
+    <dimen name="common_ui_size_203">203dp</dimen>
+    <dimen name="common_ui_size_335">335dp</dimen>
+    <dimen name="common_ui_size_420">420dp</dimen>
+    <dimen name="common_ui_size_730">730dp</dimen>
+    <dimen name="common_ui_size_45">45dp</dimen>
+    <dimen name="common_ui_size_95">95dp</dimen>
+    <dimen name="common_ui_size_28">28dp</dimen>
+    <dimen name="common_ui_size_117">117dp</dimen>
+    <dimen name="common_ui_size_450">450dp</dimen>
+    <dimen name="common_ui_size_550">550dp</dimen>
+    <dimen name="common_ui_size_320">320dp</dimen>
+    <dimen name="common_ui_size_80">80dp</dimen>
+    <dimen name="common_ui_size_230">230dp</dimen>
+    <dimen name="common_ui_size_100">100dp</dimen>
+    <dimen name="common_ui_size_65">65dp</dimen>
+    <dimen name="common_ui_size_16">16dp</dimen>
+    <dimen name="common_ui_size_18">18dp</dimen>
+    <dimen name="common_ui_size_88">88dp</dimen>
+    <dimen name="common_ui_size_94">94dp</dimen>
+    <dimen name="common_ui_size_55">55dp</dimen>
+    <dimen name="common_ui_size_106">106dp</dimen>
+    <dimen name="common_ui_size_304">304dp</dimen>
+    <dimen name="common_ui_size_24">24dp</dimen>
+    <dimen name="common_ui_size_260">260dp</dimen>
+    <dimen name="common_ui_size_285">285dp</dimen>
+    <dimen name="common_ui_size_360">360dp</dimen>
+    <dimen name="common_ui_size_190">190dp</dimen>
+    <dimen name="common_ui_size_74">74dp</dimen>
+    <dimen name="common_ui_size_56">56dp</dimen>
+    <dimen name="common_ui_size_110">110dp</dimen>
+    <dimen name="common_ui_size_36">36dp</dimen>
+    <dimen name="common_ui_size_270">270dp</dimen>
+    <dimen name="common_ui_size_300">300dp</dimen>
+    <dimen name="common_ui_size_290">290dp</dimen>
+    <dimen name="common_ui_size_120">120dp</dimen>
+    <dimen name="common_ui_size_98">98dp</dimen>
+    <dimen name="common_ui_size_460">460dp</dimen>
+    <dimen name="common_ui_size_9">9dp</dimen>
+    <dimen name="common_ui_size_25">25dp</dimen>
+    <dimen name="common_ui_size_101">101dp</dimen>
+    <dimen name="common_ui_size_19">19dp</dimen>
+    <dimen name="common_ui_size_170">170dp</dimen>
+    <dimen name="common_ui_size_150">150dp</dimen>
+    <dimen name="common_ui_size_70">70dp</dimen>
+    <dimen name="common_ui_size_129">129dp</dimen>
+    <dimen name="common_ui_size_33">33dp</dimen>
+    <dimen name="common_ui_size_415">415dp</dimen>
+    <dimen name="common_ui_size_455">455dp</dimen>
+    <dimen name="common_ui_size_85">85dp</dimen>
+    <dimen name="common_ui_size_35">35dp</dimen>
+    <dimen name="common_ui_size_800">800dp</dimen>
+    <dimen name="common_ui_size_900">900dp</dimen>
+    <dimen name="common_ui_size_600">600dp</dimen>
+    <dimen name="common_ui_size_10">10dp</dimen>
+    <dimen name="common_ui_size_54">54dp</dimen>
+    <dimen name="common_ui_size_90">90dp</dimen>
+    <dimen name="common_ui_size_220">220dp</dimen>
+    <dimen name="common_ui_home_net_height">50dp</dimen>
+
+    <dimen name="common_ui_size_105">105dp</dimen>
+    <dimen name="common_ui_home_margin_top">80dp</dimen>
+    <dimen name="common_ui_size_210">210dp</dimen>
+    <dimen name="common_ui_home_menu_size">206dp</dimen>
+    <dimen name="common_ui_size_160">160dp</dimen>
+
+    <!--&lt;!&ndash; 布局大小*****************end********************************&ndash;&gt;-->
+
+
+    <!--&lt;!&ndash; 字体大小*****************start********************************&ndash;&gt;-->
+    <dimen name="common_ui_font_size_15">15dp</dimen>
+    <dimen name="common_ui_font_size_12">12dp</dimen>
+    <dimen name="common_ui_font_size_9">9dp</dimen>
+    <dimen name="common_ui_font_size_14">14dp</dimen>
+    <dimen name="common_ui_font_size_18">18dp</dimen>
+    <dimen name="common_ui_font_size_11">11dp</dimen>
+    <dimen name="common_ui_font_size_8">8dp</dimen>
+    <dimen name="common_ui_font_size_13">13dp</dimen>
+    <dimen name="common_ui_font_size_26">26dp</dimen>
+    <dimen name="common_ui_font_size_16">16dp</dimen>
+    <dimen name="common_ui_font_size_19">19dp</dimen>
+    <dimen name="common_ui_font_size_20">20dp</dimen>
+    <dimen name="common_ui_font_size_40">40dp</dimen>
+    <dimen name="common_ui_font_size_25">25dp</dimen>
+    <dimen name="common_ui_font_size_17">17dp</dimen>
+    <dimen name="common_ui_font_size_27">27dp</dimen>
+    <dimen name="common_ui_font_size_10">10dp</dimen>
+    <dimen name="common_ui_font_size_23">23dp</dimen>
+
+    <!-- 布局大小*****************start********************************-->
+
+    <dimen name="sub_common_ui_margin_24">24dp</dimen>
+    <dimen name="sub_common_ui_margin_225">225dp</dimen>
+    <dimen name="sub_common_ui_margin_36">36dp</dimen>
+    <dimen name="sub_common_ui_margin_80">80dp</dimen>
+    <dimen name="sub_common_ui_margin_19">19dp</dimen>
+    <dimen name="sub_common_ui_margin_27">27dp</dimen>
+    <dimen name="sub_common_ui_margin_20">20dp</dimen>
+    <dimen name="sub_common_ui_margin_14">14dp</dimen>
+    <dimen name="sub_common_ui_margin_23">23dp</dimen>
+    <dimen name="sub_common_ui_margin_15">15dp</dimen>
+    <dimen name="sub_common_ui_margin_40">40dp</dimen>
+    <dimen name="sub_common_ui_margin_10">10dp</dimen>
+    <dimen name="sub_common_ui_margin_4">4dp</dimen>
+    <dimen name="sub_common_ui_margin_6">6dp</dimen>
+    <dimen name="sub_common_ui_margin_30">30dp</dimen>
+    <dimen name="sub_common_ui_margin_6_5">6.5dp</dimen>
+    <dimen name="sub_common_ui_margin_249">249dp</dimen>
+    <dimen name="sub_common_ui_margin_327">327dp</dimen>
+    <dimen name="sub_common_ui_margin_261">261dp</dimen>
+
+    <!-- 布局大小*****************end********************************-->
+
+
+    <!-- 字体大小*****************start********************************-->
+
+    <dimen name="sub_common_ui_font_size_18">18sp</dimen>
+    <dimen name="sub_common_ui_font_size_12">12sp</dimen>
+    <dimen name="sub_common_ui_font_size_14">14sp</dimen>
+    <dimen name="sub_common_ui_font_size_15">15sp</dimen>
+    <!-- 字体大小*****************end********************************-->
+
+</resources>

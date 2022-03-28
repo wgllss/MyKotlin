@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--sunmi 大客屏-->
+
+    <!-- 布局大小*****************start********************************-->
+
+    <dimen name="sub_common_ui_margin_24">24dp</dimen>
+    <dimen name="sub_common_ui_margin_225">225dp</dimen>
+    <dimen name="sub_common_ui_margin_36">36dp</dimen>
+    <dimen name="sub_common_ui_margin_80">80dp</dimen>
+    <dimen name="sub_common_ui_margin_19">19dp</dimen>
+    <dimen name="sub_common_ui_margin_27">27dp</dimen>
+    <dimen name="sub_common_ui_margin_20">20dp</dimen>
+    <dimen name="sub_common_ui_margin_14">14dp</dimen>
+    <dimen name="sub_common_ui_margin_23">23dp</dimen>
+    <dimen name="sub_common_ui_margin_15">15dp</dimen>
+    <dimen name="sub_common_ui_margin_40">40dp</dimen>
+    <dimen name="sub_common_ui_margin_10">10dp</dimen>
+    <dimen name="sub_common_ui_margin_4">4dp</dimen>
+    <dimen name="sub_common_ui_margin_6">6dp</dimen>
+    <dimen name="sub_common_ui_margin_30">30dp</dimen>
+    <dimen name="sub_common_ui_margin_6_5">6.5dp</dimen>
+    <dimen name="sub_common_ui_margin_249">249dp</dimen>
+    <dimen name="sub_common_ui_margin_327">327dp</dimen>
+    <dimen name="sub_common_ui_margin_261">261dp</dimen>
+
+    <dimen name="common_ui_main_left_size">495dp</dimen>
+    <dimen name="common_ui_main_left_size_2">505dp</dimen>
+    <dimen name="common_ui_coupons_width">200dp</dimen>
+    <dimen name="common_ui_net_layout_width">290dp</dimen>
+    <dimen name="common_ui_popupwindow_width">117dp</dimen>
+    <dimen name="common_ui_home_net_height">50dp</dimen>
+
+    <dimen name="sub_common_ui_birtday_width">300dp</dimen>
+    <dimen name="sub_common_ui_birtday_height">250dp</dimen>
+
+    <dimen name="common_ui_size_105">105dp</dimen>
+    <dimen name="common_ui_home_menu_size">216dp</dimen>
+    <dimen name="common_ui_size_210">210dp</dimen>
+    <dimen name="common_ui_size_160">160dp</dimen>
+    <dimen name="common_ui_home_margin_top">70dp</dimen>
+    <!-- 布局大小*****************end********************************-->
+
+
+    <!-- 字体大小*****************start********************************-->
+
+    <dimen name="sub_common_ui_font_size_18">18sp</dimen>
+    <dimen name="sub_common_ui_font_size_12">12sp</dimen>
+    <dimen name="sub_common_ui_font_size_14">14sp</dimen>
+    <dimen name="sub_common_ui_font_size_15">15sp</dimen>
+    <!-- 字体大小*****************end********************************-->
+</resources>

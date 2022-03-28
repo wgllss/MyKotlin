@@ -1,0 +1,4 @@
+include ':app'
+include ':common'
+include ':skin'
+rootProject.name = "MyKotlin"

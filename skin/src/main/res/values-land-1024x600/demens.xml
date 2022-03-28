@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--sunmi 小客屏-->
+
+    <!-- 布局大小*****************start********************************-->
+
+    <dimen name="sub_common_ui_margin_24">20dp</dimen>
+    <dimen name="sub_common_ui_margin_225">205dp</dimen>
+    <dimen name="sub_common_ui_margin_36">32dp</dimen>
+    <dimen name="sub_common_ui_margin_80">76dp</dimen>
+    <dimen name="sub_common_ui_margin_19">15dp</dimen>
+    <dimen name="sub_common_ui_margin_27">23dp</dimen>
+    <dimen name="sub_common_ui_margin_20">10dp</dimen>
+    <dimen name="sub_common_ui_margin_14">8dp</dimen>
+    <dimen name="sub_common_ui_margin_23">19dp</dimen>
+    <dimen name="sub_common_ui_margin_15">11dp</dimen>
+    <dimen name="sub_common_ui_margin_40">36dp</dimen>
+    <dimen name="sub_common_ui_margin_10">6dp</dimen>
+    <dimen name="sub_common_ui_margin_4">2dp</dimen>
+    <dimen name="sub_common_ui_margin_6">4dp</dimen>
+    <dimen name="sub_common_ui_margin_30">26dp</dimen>
+    <dimen name="sub_common_ui_margin_6_5">4dp</dimen>
+    <dimen name="sub_common_ui_margin_249">229dp</dimen>
+    <dimen name="sub_common_ui_margin_327">307dp</dimen>
+    <dimen name="sub_common_ui_margin_261">241dp</dimen>
+
+    <dimen name="sub_common_ui_birtday_width">250dp</dimen>
+    <dimen name="sub_common_ui_birtday_height">190dp</dimen>
+    <!-- 布局大小*****************end********************************-->
+
+
+    <!-- 字体大小*****************start********************************-->
+
+    <dimen name="sub_common_ui_font_size_18">15sp</dimen>
+    <dimen name="sub_common_ui_font_size_12">10sp</dimen>
+    <dimen name="sub_common_ui_font_size_14">12sp</dimen>
+    <dimen name="sub_common_ui_font_size_15">13sp</dimen>
+    <!-- 字体大小*****************end********************************-->
+</resources>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--本页无效 -->
+
+    <!-- 布局大小*****************start********************************-->
+
+    <dimen name="sub_common_ui_margin_24">24dp</dimen>
+    <dimen name="sub_common_ui_margin_225">225dp</dimen>
+    <dimen name="sub_common_ui_margin_36">36dp</dimen>
+    <dimen name="sub_common_ui_margin_80">80dp</dimen>
+    <dimen name="sub_common_ui_margin_19">19dp</dimen>
+    <dimen name="sub_common_ui_margin_27">27dp</dimen>
+    <dimen name="sub_common_ui_margin_20">20dp</dimen>
+    <dimen name="sub_common_ui_margin_14">14dp</dimen>
+    <dimen name="sub_common_ui_margin_23">23dp</dimen>
+    <dimen name="sub_common_ui_margin_15">15dp</dimen>
+    <dimen name="sub_common_ui_margin_40">40dp</dimen>
+    <dimen name="sub_common_ui_margin_10">10dp</dimen>
+    <dimen name="sub_common_ui_margin_4">4dp</dimen>
+    <dimen name="sub_common_ui_margin_6">6dp</dimen>
+    <dimen name="sub_common_ui_margin_30">30dp</dimen>
+    <dimen name="sub_common_ui_margin_6_5">6.5dp</dimen>
+    <dimen name="sub_common_ui_margin_249">249dp</dimen>
+    <dimen name="sub_common_ui_margin_327">327dp</dimen>
+    <dimen name="sub_common_ui_margin_261">261dp</dimen>
+
+    <!-- 布局大小*****************end********************************-->
+
+
+    <!-- 字体大小*****************start********************************-->
+
+    <dimen name="sub_common_ui_font_size_18">18sp</dimen>
+    <dimen name="sub_common_ui_font_size_12">12sp</dimen>
+    <dimen name="sub_common_ui_font_size_14">14sp</dimen>
+    <dimen name="sub_common_ui_font_size_15">15sp</dimen>
+    <!-- 字体大小*****************end********************************-->
+</resources>
