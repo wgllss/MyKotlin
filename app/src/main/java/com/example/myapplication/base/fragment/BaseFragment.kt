@@ -1,8 +1,8 @@
 package com.example.myapplication.base.fragment
 
 import androidx.fragment.app.Fragment
-import com.common.framework.widget.CommonToast
 import com.example.myapplication.base.activity.BaseActivity
+import com.example.myapplication.widget.CommonToast
 
 open class BaseFragment : Fragment() {
 

@@ -10,9 +10,9 @@ import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.common.framework.utils.ScreenUtils;
-import com.common.framework.widget.DividerGridItemDecoration;
 import com.example.myapplication.base.adapter.BaseDataBindingAdapter;
+import com.example.myapplication.uitls.ScreenUtils;
+import com.example.myapplication.widget.DividerGridItemDecoration;
 
 import java.util.List;
 

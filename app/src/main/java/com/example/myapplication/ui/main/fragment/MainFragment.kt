@@ -2,7 +2,6 @@ package com.example.myapplication.ui.main.fragment
 
 import android.os.Bundle
 import androidx.recyclerview.widget.RecyclerView
-import com.common.framework.widget.OnRecyclerVIewItemClickLIstener
 import com.example.myapplication.R
 import com.example.myapplication.base.fragment.BaseMvvmFragment
 import com.example.myapplication.databinding.MainFragmentBinding
@@ -15,14 +14,20 @@ import android.view.View
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.observe
 import com.example.myapplication.base.fragment.RefreshLayoutFragment
+import com.example.myapplication.widget.OnRecyclerVIewItemClickLIstener
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import okhttp3.internal.notify
 
-class MainFragment : RefreshLayoutFragment<MainViewModel, MainFragmentBinding>() {
+class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainFragmentBinding>() {
     lateinit var imageAdapter: ImageAdapter;
+    var searchContent: String? = null
 
     companion object {
-        fun newInstance() = MainFragment()
+        fun newInstance(content: String):MainFragment{
+           var instance = MainFragment(content)
+            instance.searchContent=content
+            return instance
+        }
     }
 
     override fun getModelClass(): KClass<MainViewModel> {
@@ -43,15 +48,15 @@ class MainFragment : RefreshLayoutFragment<MainViewModel, MainFragmentBinding>()
         binding.setViewmodel(viewModel)
         binding.recycler.setHasFixedSize(true)
         binding.recycler.setItemViewCacheSize(20)
-        binding.recycler.addOnItemTouchListener(object :OnRecyclerVIewItemClickLIstener(binding.recycler) {
+        binding.recycler.addOnItemTouchListener(object : OnRecyclerVIewItemClickLIstener(binding.recycler) {
             override fun onItemClickListener(viewHolder: RecyclerView.ViewHolder?, position: Int) {
-                Log.e("wg","onItemClickListener position = $position ur = ${viewModel.listData?.value?.get(position)?.middleURL}");
+                Log.e("wg", "onItemClickListener position = $position ur = ${viewModel.listData?.value?.get(position)?.middleURL}");
 
 //                viewModel.getImageList()
             }
 
             override fun onItemLongClickListener(viewHolder: RecyclerView.ViewHolder?, position: Int) {
-                Log.e("wg","onItemLongClickListener position = $position");
+                Log.e("wg", "onItemLongClickListener position = $position");
             }
         })
 
@@ -66,12 +71,13 @@ class MainFragment : RefreshLayoutFragment<MainViewModel, MainFragmentBinding>()
     }
 
     override fun initValue() {
+        viewModel.searchContent.value = searchContent
         autoRefresh()
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
-        viewModel.liveDataGsm.value=""
-        viewModel.liveDataPn.value=0
+        viewModel.liveDataGsm.value = ""
+        viewModel.liveDataPn.value = 0
         viewModel.getImageList()
         finishBoth()
     }

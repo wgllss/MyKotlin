@@ -1,10 +1,10 @@
 package com.example.myapplication.application
 
 import android.app.Application
-import com.common.framework.utils.AppBuildConfig
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.net.Config
 import com.example.myapplication.net.RetrofitClient
+import com.example.myapplication.uitls.AppBuildConfig
 import okhttp3.logging.HttpLoggingInterceptor
 
 class LCApplication : Application() {

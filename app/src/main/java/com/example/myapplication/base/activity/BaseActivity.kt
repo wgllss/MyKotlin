@@ -3,8 +3,8 @@ package com.example.myapplication.base.activity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.common.framework.widget.CommonToast
 import com.example.myapplication.base.dialog.CommonLoadingView
+import com.example.myapplication.widget.CommonToast
 
 open abstract class BaseActivity : AppCompatActivity() {
     var loading: CommonLoadingView? = null

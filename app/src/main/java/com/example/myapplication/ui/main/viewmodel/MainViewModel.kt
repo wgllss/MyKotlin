@@ -11,9 +11,10 @@ import java.util.*
 
 open class MainViewModel() : BaseViewModel() {
 //    var uidata: MutableLiveData<String> = MutableLiveData()
-    var listData: MutableLiveData<ArrayList<BaiduDataBean>> = MutableLiveData()
-    var liveDataPn: MutableLiveData<Int> = MutableLiveData()
-    var liveDataGsm: MutableLiveData<String> = MutableLiveData()
+    var listData= MutableLiveData<ArrayList<BaiduDataBean>>()
+    var liveDataPn = MutableLiveData<Int>()
+    var liveDataGsm = MutableLiveData<String>()
+    var searchContent= MutableLiveData<String> ()
 
 //    var listdata = lazy {
 //        MutableLiveData<List<BaiduDataBean>>()
@@ -27,8 +28,8 @@ open class MainViewModel() : BaseViewModel() {
 
     fun getImageList(){
         viewModelScope.launch {
-            var searchContent = "黄美姬";
-            var baiduimageresponse = RetrofitClient.articleService.get9(searchContent,searchContent,liveDataPn.value!!,liveDataGsm.value!!)
+
+            var baiduimageresponse = RetrofitClient.articleService.get9(searchContent.value!!,searchContent.value!!,liveDataPn.value!!,liveDataGsm.value!!)
 
             for (i in baiduimageresponse.data!!.indices){
                 if(baiduimageresponse.data?.get(i)!=null&&baiduimageresponse.data?.get(i)?.middleURL==null){
@@ -40,7 +41,7 @@ open class MainViewModel() : BaseViewModel() {
            }else{
                var list  = listData.value
                list?.addAll(baiduimageresponse?.data!!)
-               listData.value=list
+               listData.value=list!!
            }
             Log.e("Wg"," listData.value.size-->${ listData?.value?.size}")
             liveDataPn.value=liveDataPn.value!!+30

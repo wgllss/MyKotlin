@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="homeViewModel"
+            type="com.example.myapplication.ui.main.viewmodel.HomeViewModel" />
+
+        <variable
+            name="activity"
+            type="com.example.myapplication.ui.main.activity.HomeActivity" />
+    </data>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_ffffffff"
+        android:padding="@dimen/common_ui_font_size_20"
+        android:orientation="vertical"
+        android:gravity="center"
+        tools:context=".ui.main.activity.HomeActivity">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/common_ui_size_80"
+            android:background="@color/color_ffffffff"
+            android:text="@={homeViewModel.searchContent}"
+            android:textSize="@dimen/common_ui_font_size_16"
+            android:textColor="@color/color_FF010101"
+            android:hint="请输入搜索内容"
+            android:id="@+id/edit_serach_content"
+            />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_search"
+            android:layout_width="match_parent"
+            android:layout_marginTop="@dimen/common_ui_font_size_20"
+            android:text="搜索"
+            android:onClick="@{activity::onClick}"
+            android:layout_height="@dimen/common_ui_size_50"/>
+
+    </LinearLayout>
+</layout>

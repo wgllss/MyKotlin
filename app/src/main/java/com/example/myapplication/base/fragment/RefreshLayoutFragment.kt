@@ -2,8 +2,8 @@ package com.example.myapplication.base.fragment
 
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
-import com.common.framework.common.CommonHandler
 import com.example.myapplication.base.viewmodel.BaseViewModel
+import com.example.myapplication.common.CommonHandler
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener

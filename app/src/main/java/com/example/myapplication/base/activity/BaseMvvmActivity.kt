@@ -14,7 +14,6 @@ open abstract class BaseMvvmActivity<VM : BaseViewModel, DB : ViewDataBinding> :
     lateinit var binding: DB
 
     override fun initControl(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, getLayoutID())
         binding.lifecycleOwner = this
         initViewModel()

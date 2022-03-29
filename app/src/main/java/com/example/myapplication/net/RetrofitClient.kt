@@ -2,7 +2,6 @@ package com.example.myapplication.net
 
 import android.os.Build
 import android.text.TextUtils
-import com.common.framework.network.HttpConfig
 import com.example.myapplication.BuildConfig
 import com.example.myapplication.net.impl.RestService
 import okhttp3.HttpUrl
@@ -17,7 +16,7 @@ import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-    private val TIMEOUT = HttpConfig.DEFAULT_TIMEOUT_MILLISECONDS
+    private val TIMEOUT = 60000
 //    var DEFAULT_HOST =  "https://3g.163.com/"
     var DEFAULT_HOST =  "https://image.baidu.com/"
     var level: HttpLoggingInterceptor.Level? = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
