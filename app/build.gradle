@@ -21,10 +21,6 @@ android {
         dataBinding= true
     }
 
-//    dataBinding {
-//        enabled = true
-//    }
-
     buildTypes {
         release {
             minifyEnabled false

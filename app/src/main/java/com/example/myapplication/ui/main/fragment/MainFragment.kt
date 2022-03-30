@@ -1,22 +1,19 @@
 package com.example.myapplication.ui.main.fragment
 
 import android.os.Bundle
-import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.R
-import com.example.myapplication.base.fragment.BaseMvvmFragment
-import com.example.myapplication.databinding.MainFragmentBinding
-import com.example.myapplication.ui.main.adapter.ImageAdapter
-import com.example.myapplication.ui.main.viewmodel.MainViewModel
-import java.util.*
-import kotlin.reflect.KClass
 import android.util.Log
 import android.view.View
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.observe
+import androidx.recyclerview.widget.RecyclerView
+import com.example.myapplication.R
 import com.example.myapplication.base.fragment.RefreshLayoutFragment
+import com.example.myapplication.databinding.MainFragmentBinding
+import com.example.myapplication.ui.main.activity.ShowImageActivity
+import com.example.myapplication.ui.main.adapter.ImageAdapter
+import com.example.myapplication.ui.main.viewmodel.MainViewModel
 import com.example.myapplication.widget.OnRecyclerVIewItemClickLIstener
 import com.scwang.smartrefresh.layout.api.RefreshLayout
-import okhttp3.internal.notify
+import java.util.*
+import kotlin.reflect.KClass
 
 class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainFragmentBinding>() {
     lateinit var imageAdapter: ImageAdapter;
@@ -51,7 +48,9 @@ class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainF
         binding.recycler.addOnItemTouchListener(object : OnRecyclerVIewItemClickLIstener(binding.recycler) {
             override fun onItemClickListener(viewHolder: RecyclerView.ViewHolder?, position: Int) {
                 Log.e("wg", "onItemClickListener position = $position ur = ${viewModel.listData?.value?.get(position)?.middleURL}");
-
+                var imgList = ArrayList<String>()
+                imgList.add(viewModel.listData?.value?.get(position)!!.middleURL)
+                ShowImageActivity.startShowImage(activity,imgList,0)
 //                viewModel.getImageList()
             }
 

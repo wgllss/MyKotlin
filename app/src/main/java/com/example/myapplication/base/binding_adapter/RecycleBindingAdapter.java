@@ -9,6 +9,8 @@ import android.widget.Toast;
 import androidx.databinding.BindingAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.myapplication.base.adapter.BaseDataBindingAdapter;
 import com.example.myapplication.uitls.ScreenUtils;
@@ -28,7 +30,7 @@ public class RecycleBindingAdapter {
                 }
 
                 recyclerView.setHasFixedSize(true);
-                if (itemWidth != 0&&recyclerView.getItemDecorationCount()==0) {
+                if (itemWidth != 0 && recyclerView.getItemDecorationCount() == 0) {
                     Context mContext = recyclerView.getContext();
                     View itemDecoration = new View(mContext);
 //        int size = (int) ScreenUtils.getIntToDip(2);
@@ -52,4 +54,20 @@ public class RecycleBindingAdapter {
 
 
     }
+
+//    @BindingAdapter(value = {"pageradapter", "currentitem","listData"},requireAll = false)
+//    public static void setPagerAdapterInfo(ViewPager viewPager, PagerAdapter pagerAdapter, int currentItem,List listData) {
+//        try {
+//            if (viewPager != null) {
+//                if (viewPager.getAdapter() != null && pagerAdapter != null) {
+//                    viewPager.setAdapter(pagerAdapter);
+//                }
+//                viewPager.setCurrentItem(currentItem);
+//
+//            }
+//
+//        } catch (Exception e) {
+//
+//        }
+//    }
 }
