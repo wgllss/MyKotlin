@@ -2,14 +2,16 @@ package com.example.myapplication.base.activity
 
 import androidx.databinding.ViewDataBinding
 import com.example.myapplication.base.viewmodel.BaseViewModel
-import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener
+import com.scwang.smart.refresh.header.ClassicsHeader
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 
 open abstract class RefreshLayoutActivity<VM : BaseViewModel, DB : ViewDataBinding> : BaseMvvmActivity<VM, DB>(), OnRefreshListener, OnLoadMoreListener {
 
     protected var refreshLayout: RefreshLayout? = null
     private var isFirstLoad = true
+//    var df : ClassicsHeader
 
     override fun bindEvent() {
         super.bindEvent()
@@ -21,7 +23,7 @@ open abstract class RefreshLayoutActivity<VM : BaseViewModel, DB : ViewDataBindi
 
     open fun setEnableRefresh(enableRefresh: Boolean) {
         if (refreshLayout != null) {
-            refreshLayout!!.isEnableRefresh = enableRefresh
+            refreshLayout!!.setEnableRefresh(enableRefresh)
         }
     }
 
@@ -33,7 +35,7 @@ open abstract class RefreshLayoutActivity<VM : BaseViewModel, DB : ViewDataBindi
 
     open fun setEnableLoadMore(enableLoadMore: Boolean) {
         if (refreshLayout != null) {
-            refreshLayout!!.isEnableLoadMore = enableLoadMore
+            refreshLayout!!.setEnableLoadMore(enableLoadMore)
         }
     }
 

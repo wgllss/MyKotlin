@@ -11,7 +11,7 @@ import com.example.myapplication.ui.main.activity.ShowImageActivity
 import com.example.myapplication.ui.main.adapter.ImageAdapter
 import com.example.myapplication.ui.main.viewmodel.MainViewModel
 import com.example.myapplication.widget.OnRecyclerVIewItemClickLIstener
-import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.api.RefreshLayout
 import java.util.*
 import kotlin.reflect.KClass
 
@@ -47,7 +47,7 @@ class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainF
         binding.recycler.setItemViewCacheSize(20)
         binding.recycler.addOnItemTouchListener(object : OnRecyclerVIewItemClickLIstener(binding.recycler) {
             override fun onItemClickListener(viewHolder: RecyclerView.ViewHolder?, position: Int) {
-                Log.e("wg", "onItemClickListener position = $position ur = ${viewModel.listData?.value?.get(position)?.middleURL}");
+//                Log.e("wg", "onItemClickListener position = $position ur = ${viewModel.listData?.value?.get(position)?.middleURL}");
                 var imgList = ArrayList<String>()
                 imgList.add(viewModel.listData?.value?.get(position)!!.middleURL)
                 ShowImageActivity.startShowImage(activity,imgList,0)
@@ -55,7 +55,7 @@ class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainF
             }
 
             override fun onItemLongClickListener(viewHolder: RecyclerView.ViewHolder?, position: Int) {
-                Log.e("wg", "onItemLongClickListener position = $position");
+//                Log.e("wg", "onItemLongClickListener position = $position");
             }
         })
 

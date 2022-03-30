@@ -4,9 +4,9 @@ import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import com.example.myapplication.base.viewmodel.BaseViewModel
 import com.example.myapplication.common.CommonHandler
-import com.scwang.smartrefresh.layout.api.RefreshLayout
-import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
-import com.scwang.smartrefresh.layout.listener.OnRefreshListener
+import com.scwang.smart.refresh.layout.api.RefreshLayout
+import com.scwang.smart.refresh.layout.listener.OnLoadMoreListener
+import com.scwang.smart.refresh.layout.listener.OnRefreshListener
 
 open abstract class RefreshLayoutFragment<VM : BaseViewModel, DB : ViewDataBinding> :BaseMvvmFragment<VM, DB>() , OnRefreshListener, OnLoadMoreListener {
 
@@ -43,7 +43,7 @@ open abstract class RefreshLayoutFragment<VM : BaseViewModel, DB : ViewDataBindi
 
     open fun setEnableRefresh(enableRefresh: Boolean) {
         if (refreshLayout != null) {
-            refreshLayout!!.isEnableRefresh = enableRefresh
+            refreshLayout!!.setEnableRefresh(enableRefresh)
         }
     }
 
@@ -55,7 +55,7 @@ open abstract class RefreshLayoutFragment<VM : BaseViewModel, DB : ViewDataBindi
 
     open fun setEnableLoadMore(enableLoadMore: Boolean) {
         if (refreshLayout != null) {
-            refreshLayout!!.isEnableLoadMore = enableLoadMore
+            refreshLayout!!.setEnableLoadMore(enableLoadMore)
         }
     }
 

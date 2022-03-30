@@ -13,7 +13,7 @@
 
     </data>
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/refreshLayout"
@@ -23,7 +23,7 @@
         app:srlEnableFooterFollowWhenLoadFinished="true"
         app:srlEnableScrollContentWhenLoaded="true">
 
-        <com.scwang.smartrefresh.layout.header.ClassicsHeader
+        <com.scwang.smart.refresh.header.ClassicsHeader
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:srlAccentColor="@android:color/darker_gray" />
@@ -39,9 +39,9 @@
             app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
             app:spanCount="2" />
 
-        <com.scwang.smartrefresh.layout.footer.ClassicsFooter
+        <com.scwang.smart.refresh.footer.ClassicsFooter
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:srlClassicsSpinnerStyle="Translate" />
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
+    </com.scwang.smart.refresh.layout.SmartRefreshLayout>
 </layout>
