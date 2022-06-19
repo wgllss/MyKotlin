@@ -1,59 +1,46 @@
 package com.example.myapplication.ui.main.viewmodel
 
+import android.os.Build
 import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.base.viewmodel.BaseViewModel
 import com.example.myapplication.data.BaiduDataBean
 import com.example.myapplication.net.RetrofitClient
+import com.example.myapplication.ui.main.repository.BaiduRepository
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.util.*
 
 open class MainViewModel() : BaseViewModel() {
-//    var uidata: MutableLiveData<String> = MutableLiveData()
-    var listData= MutableLiveData<ArrayList<BaiduDataBean>>()
-    var liveDataPn = MutableLiveData<Int>()
-    var liveDataGsm = MutableLiveData<String>()
-    var searchContent= MutableLiveData<String> ()
+    val listData by lazy { MutableLiveData<ArrayList<BaiduDataBean>?>() }
+    val liveDataPn by lazy { MutableLiveData<Int>() }
+    val liveDataGsm by lazy { MutableLiveData<String>() }
+    val searchContent by lazy { MutableLiveData<String>() }
+    private val repository by lazy { BaiduRepository() }
 
-//    var listdata = lazy {
-//        MutableLiveData<List<BaiduDataBean>>()
+
+//    init {
+//        liveDataPn.value = 0
+//        liveDataGsm.value = ""
+//
 //    }
 
-    init {
-        liveDataPn.value=0
-        liveDataGsm.value=""
-
-    }
-
-    fun getImageList(){
+    fun getImageList() {
+        Log.e(javaClass.simpleName, "线程-1-->${Thread.currentThread().name}")
         viewModelScope.launch {
-
-            var baiduimageresponse = RetrofitClient.articleService.get9(searchContent.value!!,searchContent.value!!,liveDataPn.value!!,liveDataGsm.value!!)
-
-            for (i in baiduimageresponse.data!!.indices){
-                if(baiduimageresponse.data?.get(i)!=null&&baiduimageresponse.data?.get(i)?.middleURL==null){
-                    baiduimageresponse.data?.removeAt(i)
+            Log.e(javaClass.simpleName, "线程-2-->${Thread.currentThread().name}")
+            repository.get89(searchContent.value!!, searchContent.value!!, liveDataPn.value!!, liveDataGsm.value!!)
+                .collect {
+                    Log.e(javaClass.simpleName, "线程-3-->${Thread.currentThread().name}")
+                    if (liveDataPn.value == 0) listData.value = it?.data
+                    else listData.value = listData.value?.also { ims ->
+                        ims.addAll(it.data)
+                    }
+                    liveDataPn.value = liveDataPn.value?.plus(30)
+                    liveDataGsm.value = it.gsm
                 }
-            }
-            if(liveDataPn.value==0){
-               listData.value=baiduimageresponse?.data
-           }else{
-               var list  = listData.value
-               list?.addAll(baiduimageresponse?.data!!)
-               listData.value=list!!
-           }
-            Log.e("Wg"," listData.value.size-->${ listData?.value?.size}")
-            liveDataPn.value=liveDataPn.value!!+30
-            liveDataGsm.value=baiduimageresponse.gsm
         }
-//        RetrofitClient.articleService.get5().enqueue(object :Callback<String>{
-//            override fun onResponse(call: Call<String>, response: Response<String>) {
-//                Log.e("wg--",response.body().toString())
-//            }
-//
-//            override fun onFailure(call: Call<String>, t: Throwable){
-//            }
-//        })
     }
 }
