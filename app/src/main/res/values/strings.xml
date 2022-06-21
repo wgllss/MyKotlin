@@ -2,4 +2,15 @@
     <string name="app_name">搜索</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="ElseNetException">未知错误</string>
+    <string name="SocketTimeoutException">网络超时</string>
+    <string name="TimeoutException">网络超时</string>
+    <string name="SocketException">网络错误</string>
+    <string name="ConnectException">网络错误</string>
+    <string name="UnknownHostException">无网络连接</string>
+    <string name="HostBaseUrlError">请求地址错误</string>
+    <string name="emobilenetuseless_msg">当前网络不可用</string>
+    <string name="JsonSyntaxException">数据错误,json错误</string>
+
 </resources>
