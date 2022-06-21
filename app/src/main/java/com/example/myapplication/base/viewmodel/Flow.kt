@@ -10,6 +10,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.onCompletion
 import java.net.ConnectException
 import java.net.SocketException
 import java.net.SocketTimeoutException
@@ -26,17 +27,16 @@ fun Throwable?.parseErrorString(): String {
         is TimeoutException -> getString(R.string.SocketTimeoutException)
         is IllegalArgumentException -> {
             if (message?.contains("baseUrl must end in ") == true)
-                if(LCApplication.application.isNetWorkActive()){
+                if (LCApplication.application.isNetWorkActive()) {
                     getString(R.string.HostBaseUrlError)
-                }else{
+                } else {
                     getString(R.string.emobilenetuseless_msg)
                 }
-            else message?:""
+            else message ?: ""
         }
         else -> getString(R.string.ElseNetException)
     }
 }
-
 
 
 fun <T> Flow<T>.flowOnIOAndcatch(errorMsgLiveData: MutableLiveData<String>): Flow<T> {

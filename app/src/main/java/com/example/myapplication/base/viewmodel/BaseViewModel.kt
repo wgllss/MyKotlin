@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myapplication.data.DialogBean
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.onCompletion
 
 open class BaseViewModel : ViewModel() {
     val showDialog: MutableLiveData<DialogBean> = MutableLiveData()
