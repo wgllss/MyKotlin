@@ -3,6 +3,7 @@ package com.example.myapplication.ui.main.fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplication.R
 import com.example.myapplication.base.fragment.RefreshLayoutFragment
@@ -16,13 +17,13 @@ import java.util.*
 import kotlin.reflect.KClass
 
 class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainFragmentBinding>() {
-    lateinit var imageAdapter: ImageAdapter;
+    //    lateinit var imageAdapter: ImageAdapter;
     var searchContent: String? = null
 
     companion object {
-        fun newInstance(content: String):MainFragment{
-           var instance = MainFragment(content)
-            instance.searchContent=content
+        fun newInstance(content: String): MainFragment {
+            var instance = MainFragment(content)
+            instance.searchContent = content
             return instance
         }
     }
@@ -38,6 +39,10 @@ class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainF
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setRefreshUI(binding.refreshLayout)
+        binding.refreshLayout.apply {
+            setEnableLoadMore(true)
+            setEnableAutoLoadMore(true)
+        }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -50,7 +55,7 @@ class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainF
 //                Log.e("wg", "onItemClickListener position = $position ur = ${viewModel.listData?.value?.get(position)?.middleURL}");
                 var imgList = ArrayList<String>()
                 imgList.add(viewModel.listData?.value?.get(position)!!.middleURL)
-                ShowImageActivity.startShowImage(activity,imgList,0)
+                ShowImageActivity.startShowImage(activity, imgList, 0)
 //                viewModel.getImageList()
             }
 
@@ -59,30 +64,35 @@ class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainF
             }
         })
 
-        var imageAdapter: ImageAdapter? = activity?.let { ImageAdapter(it) };
+        var imageAdapter: ImageAdapter? = activity?.let { ImageAdapter() };
         binding.imageAdapter = imageAdapter;
 
-//        viewModel.listData.observe(viewLifecycleOwner, androidx.lifecycle.Observer {
-//            imageAdapter?.notifyDataSetChanged()
-//        } )
 
         binding.executePendingBindings()
     }
 
     override fun initValue() {
+
         viewModel.searchContent.value = searchContent
-        autoRefresh()
+        Log.e(javaClass.simpleName, "线程-initValue-->${viewModel.searchContent.value}")
+        viewModel.initFatory()
+        viewModel.listData.observe(viewLifecycleOwner, Observer {
+            Log.e(javaClass.simpleName, "线程-Observer-->${it.size}----${viewModel.listData.value?.size}")
+            binding.imageAdapter?.submitList(it)
+        })
+//        autoRefresh()
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
-        viewModel.liveDataGsm.value = ""
-        viewModel.liveDataPn.value = 0
-        viewModel.getImageList()
+//        viewModel.liveDataGsm.value = ""
+//        viewModel.liveDataPn.value = 0
+//        viewModel.getImageList()
+        viewModel.invalidateDataSource()
         finishBoth()
     }
 
     override fun onLoadMore(refreshLayout: RefreshLayout) {
-        viewModel.getImageList()
+//        viewModel.getImageList()
         finishBoth()
     }
 }

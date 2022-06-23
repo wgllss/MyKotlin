@@ -1,7 +1,10 @@
 package com.example.myapplication.base.viewmodel
 
+import android.content.Context
 import android.util.Log
+import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.application.LCApplication
 import com.google.gson.JsonSyntaxException
@@ -32,7 +35,7 @@ fun Throwable?.parseErrorString(): String {
                 } else {
                     getString(R.string.emobilenetuseless_msg)
                 }
-            else message ?: ""
+            else message ?: "未知错误异常"
         }
         else -> getString(R.string.ElseNetException)
     }
@@ -41,12 +44,16 @@ fun Throwable?.parseErrorString(): String {
 
 fun <T> Flow<T>.flowOnIOAndcatch(errorMsgLiveData: MutableLiveData<String>): Flow<T> {
     return flowOn(Dispatchers.IO)
-        .catch { e: Throwable ->
-            e.printStackTrace()
+        .catch {
+            it.printStackTrace()
             Log.e(javaClass.simpleName, "线程-flowOnIOAndcatch-->${Thread.currentThread().name}")
-            errorMsgLiveData.value = e.parseErrorString();
+            errorMsgLiveData.value = it.parseErrorString();
         }
 }
 
 fun getString(resID: Int) = LCApplication.application.getString(resID)
+
+fun ImageView.loadUrl(url :String)=  Glide.with(context)
+    .load(url)
+    .into(this)
 

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import androidx.databinding.BindingAdapter;
+import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
@@ -21,7 +22,7 @@ import java.util.List;
 public class RecycleBindingAdapter {
 
     @BindingAdapter(value = {"itemColorStr", "itemWidth", "adapter", "listData"}, requireAll = false)
-    public static void setRecycleInfo(RecyclerView recyclerView, String itemColorStr, int itemWidth, BaseDataBindingAdapter adapter, List listData) {
+    public static void setRecycleInfo(RecyclerView recyclerView, String itemColorStr, int itemWidth, PagedListAdapter adapter, List listData) {
         try {
             if (recyclerView != null) {
 
@@ -44,9 +45,9 @@ public class RecycleBindingAdapter {
                     }
                     recyclerView.addItemDecoration(new DividerGridItemDecoration(mContext, GridLayoutManager.VERTICAL, itemDecoration));
                 }
-                if (adapter != null && listData != null) {
-                    adapter.notifyData(listData);
-                }
+//                if (adapter != null && listData != null) {
+//                    adapter.notifyData(listData);
+//                }
             }
         } catch (Exception e) {
             Toast.makeText(recyclerView.getContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
