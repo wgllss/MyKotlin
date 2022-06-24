@@ -77,7 +77,7 @@ class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainF
         Log.e(javaClass.simpleName, "线程-initValue-->${viewModel.searchContent.value}")
         viewModel.initFatory()
         viewModel.listData.observe(viewLifecycleOwner, Observer {
-            Log.e(javaClass.simpleName, "线程-Observer-->${it.size}----${viewModel.listData.value?.size}")
+//            Log.e(javaClass.simpleName, "线程-Observer-->${it.size}----${viewModel.listData.value?.size}")
             binding.imageAdapter?.submitList(it)
         })
 //        autoRefresh()

@@ -23,22 +23,24 @@ constructor(
 
 
     private val repository = BaiduRepository()
+    private lateinit var nextPageKey: String
+    private var flag = 30
 
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun loadInitial(params: LoadInitialParams<String>, callback: LoadInitialCallback<String, BaiduDataBean>) {
-        flowRequest(callback, null, 30, "")
+        flowRequest(callback, null, flag, "")
     }
 
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun loadBefore(params: LoadParams<String>, callback: LoadCallback<String, BaiduDataBean>) {
-//        flowRequest(null, callback, params.requestedLoadSize, params.key)
+//        flowRequest(null, callback, params.requestedLoadSize-30, previousPageKey)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String, BaiduDataBean>) {
-        flowRequest(null, callback, params.requestedLoadSize+30, params.key)
+        flowRequest(null, callback, flag + 30,nextPageKey)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -54,8 +56,10 @@ constructor(
             }.flowOnIOAndcatch(errorMsgLiveData)
                 .collect {
                     callback?.onResult(it.data, it.gsm)
-                    Log.e(javaClass.simpleName, "it.data--->${it.data.size} --gsm-->$gsm")
+                    Log.e(javaClass.simpleName, "it.data--->${it.data.size} --gsm-->${it.gsm}")
                     loadinitialcallback?.onResult(it.data, "", it.gsm)
+                    nextPageKey =it.gsm
+                    flag = pn
                 }
         }
     }
