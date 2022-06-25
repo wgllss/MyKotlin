@@ -16,10 +16,6 @@ class HomeActivity : BaseMvvmActivity<HomeViewModel, ActivityHomeBinding>(), Vie
         return R.layout.activity_home
     }
 
-    override fun getModelClass(): KClass<HomeViewModel> {
-        return HomeViewModel::class
-    }
-
     override fun initValue() {
         binding.homeViewModel = viewModel
         binding.activity = this

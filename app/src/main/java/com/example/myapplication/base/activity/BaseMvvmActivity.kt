@@ -6,6 +6,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.base.viewmodel.BaseViewModel
+import java.lang.reflect.ParameterizedType
 import kotlin.reflect.KClass
 
 open abstract class BaseMvvmActivity< VM : BaseViewModel, DB : ViewDataBinding> : BaseActivity() {
@@ -30,15 +31,12 @@ open abstract class BaseMvvmActivity< VM : BaseViewModel, DB : ViewDataBinding> 
     }
 
     fun initViewModel() {
-        if (getModelClass() == null) {
-            return
+        val type = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
+        type?.let {
+            viewModel = ViewModelProvider(this).get(it)
         }
-        viewModel = ViewModelProvider(this).get(getModelClass().java)
     }
 
     protected abstract fun getLayoutID(): Int
-
-    protected abstract fun getModelClass(): KClass<VM>
-
 
 }

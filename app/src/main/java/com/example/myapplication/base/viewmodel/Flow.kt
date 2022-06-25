@@ -1,7 +1,5 @@
 package com.example.myapplication.base.viewmodel
 
-import android.content.Context
-import android.util.Log
 import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
@@ -13,7 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.onCompletion
 import java.net.ConnectException
 import java.net.SocketException
 import java.net.SocketTimeoutException
@@ -33,9 +30,9 @@ fun Throwable?.parseErrorString(): String {
                 if (LCApplication.application.isNetWorkActive()) {
                     getString(R.string.HostBaseUrlError)
                 } else {
-                    getString(R.string.emobilenetuseless_msg)
+                    getString(R.string.Mobilenetuseless_msg)
                 }
-            else message ?: "未知错误异常"
+            else message ?: getString(R.string.ElseNetException)
         }
         else -> getString(R.string.ElseNetException)
     }
@@ -46,7 +43,6 @@ fun <T> Flow<T>.flowOnIOAndcatch(errorMsgLiveData: MutableLiveData<String>): Flo
     return flowOn(Dispatchers.IO)
         .catch {
             it.printStackTrace()
-            Log.e(javaClass.simpleName, "线程-flowOnIOAndcatch-->${Thread.currentThread().name}")
             errorMsgLiveData.value = it.parseErrorString();
         }
 }

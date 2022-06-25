@@ -57,8 +57,4 @@ class ShowImageActivity : BaseMvvmActivity<ShowImageViewModel, ActivityShowImage
         }
         super.onSaveInstanceState(outState)
     }
-
-    override fun getModelClass(): KClass<ShowImageViewModel> {
-        return ShowImageViewModel::class
-    }
 }

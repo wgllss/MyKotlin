@@ -17,7 +17,6 @@ import java.util.*
 import kotlin.reflect.KClass
 
 class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainFragmentBinding>() {
-    //    lateinit var imageAdapter: ImageAdapter;
     var searchContent: String? = null
 
     companion object {
@@ -26,10 +25,6 @@ class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainF
             instance.searchContent = content
             return instance
         }
-    }
-
-    override fun getModelClass(): KClass<MainViewModel> {
-        return MainViewModel::class
     }
 
     override fun getLayoutId(): Int {
