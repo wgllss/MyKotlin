@@ -10,9 +10,9 @@ import com.example.myapplication.data.BaiduDataBean
 open class MainViewModel() : BaseViewModel() {
     val searchContent by lazy { MutableLiveData<String>() }
 
-    private lateinit var factory: BaiduDataDourceFactory //= BaiduDataDourceFactory(launch2(), searchContent, errorMsgLiveData)  //= BaiduDataDourceFactory(launch2(), searchContent, errorMsgLiveData)
+    private lateinit var factory: BaiduDataDourceFactory
 
-    lateinit var listData: LiveData<PagedList<BaiduDataBean>> //= LivePagedListBuilder<String, BaiduDataBean>(factory, 30).build()
+    lateinit var listData: LiveData<PagedList<BaiduDataBean>>
 
     fun invalidateDataSource() {
         factory.liveDataSource.value?.invalidate()

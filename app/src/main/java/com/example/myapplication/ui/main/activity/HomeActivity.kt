@@ -1,14 +1,11 @@
 package com.example.myapplication.ui.main.activity
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
 import android.text.TextUtils
 import android.view.View
 import com.example.myapplication.R
 import com.example.myapplication.base.activity.BaseMvvmActivity
 import com.example.myapplication.databinding.ActivityHomeBinding
 import com.example.myapplication.ui.main.viewmodel.HomeViewModel
-import kotlin.reflect.KClass
 
 class HomeActivity : BaseMvvmActivity<HomeViewModel, ActivityHomeBinding>(), View.OnClickListener {
 

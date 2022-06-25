@@ -47,13 +47,10 @@ class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainF
         binding.recycler.setItemViewCacheSize(20)
         binding.recycler.addOnItemTouchListener(object : OnRecyclerVIewItemClickLIstener(binding.recycler) {
             override fun onItemClickListener(viewHolder: RecyclerView.ViewHolder?, position: Int) {
-//                Log.e("wg", "onItemClickListener position = $position ur = ${viewModel.listData?.value?.get(position)?.middleURL}");
                 var imgList = ArrayList<String>()
                 imgList.add(viewModel.listData?.value?.get(position)!!.middleURL)
                 ShowImageActivity.startShowImage(activity, imgList, 0)
-//                viewModel.getImageList()
             }
-
             override fun onItemLongClickListener(viewHolder: RecyclerView.ViewHolder?, position: Int) {
 //                Log.e("wg", "onItemLongClickListener position = $position");
             }
@@ -67,21 +64,15 @@ class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainF
     }
 
     override fun initValue() {
-
         viewModel.searchContent.value = searchContent
-        Log.e(javaClass.simpleName, "线程-initValue-->${viewModel.searchContent.value}")
         viewModel.initFatory()
         viewModel.listData.observe(viewLifecycleOwner, Observer {
-//            Log.e(javaClass.simpleName, "线程-Observer-->${it.size}----${viewModel.listData.value?.size}")
             binding.imageAdapter?.submitList(it)
         })
 //        autoRefresh()
     }
 
     override fun onRefresh(refreshLayout: RefreshLayout) {
-//        viewModel.liveDataGsm.value = ""
-//        viewModel.liveDataPn.value = 0
-//        viewModel.getImageList()
         viewModel.invalidateDataSource()
         finishBoth()
     }
