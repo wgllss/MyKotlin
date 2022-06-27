@@ -5,8 +5,9 @@ import com.example.myapplication.data.BaiduDataBean
 import com.example.myapplication.data.BaseResponse
 import com.example.myapplication.net.impl.RestService
 import kotlinx.coroutines.flow.Flow
+import javax.inject.Inject
 
-class BaiduRepository : BaseRepository("https://image.baidu.com/") {
+class BaiduRepository @Inject constructor() : BaseRepository("https://image.baidu.com/") {
 
     private val service by lazy { createService(RestService::class.java) }
     suspend fun get9(word: String, queryWord: String, pn: Int, gsm: String): Flow<BaseResponse<ArrayList<BaiduDataBean>>> {

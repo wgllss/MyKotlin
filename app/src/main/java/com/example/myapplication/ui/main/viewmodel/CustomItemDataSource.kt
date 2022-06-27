@@ -13,6 +13,8 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import android.util.Log
+import com.example.myapplication.ui.main.dagger2.DaggerMainComponent
+import javax.inject.Inject
 
 class CustomItemDataSource
 constructor(
@@ -21,10 +23,14 @@ constructor(
     val errorMsgLiveData: MutableLiveData<String> = MutableLiveData()
 ) : PageKeyedDataSource<String, BaiduDataBean>() {
 
-
-    private val repository = BaiduRepository()
+    @Inject
+    lateinit var repository: BaiduRepository
     private lateinit var nextPageKey: String
     private var flag = 30
+
+    init {
+        DaggerMainComponent.create().inject(this)
+    }
 
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -40,7 +46,7 @@ constructor(
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun loadAfter(params: LoadParams<String>, callback: LoadCallback<String, BaiduDataBean>) {
-        flowRequest(null, callback, flag + 30,nextPageKey)
+        flowRequest(null, callback, flag + 30, nextPageKey)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -58,7 +64,7 @@ constructor(
                     callback?.onResult(it.data, it.gsm)
                     Log.e(javaClass.simpleName, "it.data--->${it.data.size} --gsm-->${it.gsm}")
                     loadinitialcallback?.onResult(it.data, "", it.gsm)
-                    nextPageKey =it.gsm
+                    nextPageKey = it.gsm
                     flag = pn
                 }
         }
