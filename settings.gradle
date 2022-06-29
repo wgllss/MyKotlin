@@ -1,4 +1,6 @@
 include ':app'
 include ':common'
 include ':skin'
+include ':annotations'
+include ':annotation_compiler'
 rootProject.name = "MyKotlin"

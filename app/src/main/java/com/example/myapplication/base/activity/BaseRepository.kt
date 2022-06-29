@@ -6,7 +6,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.lang.reflect.ParameterizedType
 
-open class BaseRepository<T>(val defaultHosst: String) {
+open class BaseRepository<T>(val defaultHosst: String = "") {
     open val service by lazy { createService() }
 
     fun createService(): T {
