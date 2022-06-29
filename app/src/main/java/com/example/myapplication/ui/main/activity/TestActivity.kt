@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.main.activity
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -15,14 +16,15 @@ import com.example.myapplication.dest.Test
 class TestActivity : BaseActivity(), View.OnClickListener {
     val TAG = "MainActivity"
     val s: String = "我是String类型的";
+    val listA: List<Class<out Activity>> = listOf(TestActivity::class.java)
+    val listB: List<Class<in Activity>> = listOf(Context::class.java)
 
 
-
-    companion object{
-        val SEARCH_CONTENT_KEY="SEARCH_CONTENT_KEY"
-        fun startTestActivity(context: Context, search:String?){
-             var intent = Intent(context,TestActivity::class.java);
-            intent.putExtra(SEARCH_CONTENT_KEY,search)
+    companion object {
+        val SEARCH_CONTENT_KEY = "SEARCH_CONTENT_KEY"
+        fun startTestActivity(context: Context, search: String?) {
+            var intent = Intent(context, TestActivity::class.java);
+            intent.putExtra(SEARCH_CONTENT_KEY, search)
             context.startActivity(intent)
         }
     }
@@ -30,7 +32,7 @@ class TestActivity : BaseActivity(), View.OnClickListener {
     override fun initControl(savedInstanceState: Bundle?) {
         setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
-           var srt = intent.getStringExtra(SEARCH_CONTENT_KEY)
+            var srt = intent.getStringExtra(SEARCH_CONTENT_KEY)
             setFramgment(MainFragment.newInstance(srt!!), R.id.container)
         }
         Setup()
