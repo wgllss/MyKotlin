@@ -1,17 +1,17 @@
 package com.example.myapplication.base.activity
 
 import com.example.myapplication.data.BaseResponse
-import com.example.myapplication.net.RetrofitClient2
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.Retrofit
 import java.lang.reflect.ParameterizedType
 
-open class BaseRepository<T>(val defaultHosst: String = "") {
+open class BaseRepository<T> (private var retrofit: Retrofit){
     open val service by lazy { createService() }
 
-    fun createService(): T {
+    private fun createService(): T {
         val clazz = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<T>
-        return RetrofitClient2.getInstance(defaultHosst).create(clazz)
+        return retrofit.create(clazz)
     }
 
     suspend fun <T> apiCall(api: suspend () -> BaseResponse<T>): BaseResponse<T> =

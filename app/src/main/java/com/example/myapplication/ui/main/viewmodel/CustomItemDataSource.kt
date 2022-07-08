@@ -13,7 +13,7 @@ import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 import android.util.Log
-import com.example.myapplication.ui.main.dagger2.DaggerMainComponent
+import com.example.myapplication.application.LCApplication
 import javax.inject.Inject
 
 class CustomItemDataSource
@@ -29,7 +29,8 @@ constructor(
     private var flag = 30
 
     init {
-        DaggerMainComponent.create().inject(this)
+        LCApplication.application.appComponent.inject(this)
+//        DaggerMainComponent.create().inject(this)
     }
 
 

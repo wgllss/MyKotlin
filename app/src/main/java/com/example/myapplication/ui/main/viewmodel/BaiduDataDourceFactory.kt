@@ -3,7 +3,6 @@ package com.example.myapplication.ui.main.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.example.myapplication.data.BaiduDataBean
-import com.example.myapplication.ui.main.repository.BaiduRepository
 import kotlinx.coroutines.CoroutineScope
 
 class BaiduDataDourceFactory
