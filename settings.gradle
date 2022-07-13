@@ -3,4 +3,5 @@ include ':common'
 include ':skin'
 include ':annotations'
 include ':annotation_compiler'
+include ':networkApiData'
 rootProject.name = "MyKotlin"
