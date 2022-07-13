@@ -1,5 +1,6 @@
 package com.annotation_compiler
 
+import com.atar.annotations.AutoCreateService
 import com.atar.annotations.CreateService
 import com.google.auto.service.AutoService
 import com.squareup.kotlinpoet.ClassName
@@ -11,10 +12,7 @@ import retrofit2.Retrofit
 import javax.annotation.processing.*
 import javax.inject.Inject
 import javax.lang.model.SourceVersion
-import javax.lang.model.element.Element
-import javax.lang.model.element.ElementKind
-import javax.lang.model.element.PackageElement
-import javax.lang.model.element.TypeElement
+import javax.lang.model.element.*
 import javax.lang.model.util.Elements
 import javax.tools.Diagnostic
 
@@ -49,6 +47,7 @@ class AptProcessor : AbstractProcessor() {
         val annotations: LinkedHashSet<Class<out Annotation>> = LinkedHashSet()
         // 需要解析的自定义注解
         annotations.add(CreateService::class.java)
+        annotations.add(AutoCreateService::class.java)
         return annotations
     }
 
@@ -76,23 +75,24 @@ class AptProcessor : AbstractProcessor() {
      */
     override fun process(annotations: MutableSet<out TypeElement>, roundEnvironment: RoundEnvironment): Boolean {
         val elementsAnnotatedWith: Set<out Element> = roundEnvironment.getElementsAnnotatedWith(CreateService::class.java);
-        log("className")
+        val elementsAnnotatedWith2: Set<out Element> = roundEnvironment.getElementsAnnotatedWith(AutoCreateService::class.java);
 
-//        var map: Map<String, List<ExecutableElement>> = mutableMapOf()
-//        elementsAnnotatedWith.forEach {
-//            val elemen: ExecutableElement = it as ExecutableElement
-//            val className = elemen.enclosingElement.simpleName
-////            map.get(className)
-////            log("it: ${(elemen.simpleName.toString())}")
-////            var list = elemen.typeParameters
-////            log("fang fa ming: ${elemen.simpleName}")//注解的方法名称
-////            log("classname: ${elemen.enclosingElement.simpleName}")//得到注解方法的类
-////            log("getTypeParameters: ${(elemen.typeParameters.toString())}")//参数类型
-////            log("getReturnType: ${(elemen.getReturnType().toString())}")//返回值
-////            log("getParameters: ${(elemen.getParameters().toString())}") //参数名称
-////            log("getThrownTypes: ${(elemen.getThrownTypes().toString())}")
-////            val variableElement = it as VariableElement
-//        }
+        var map: Map<String, List<ExecutableElement>> = mutableMapOf()
+        var functionName: String? = null
+        elementsAnnotatedWith2.forEach {
+            val elemen: ExecutableElement = it as ExecutableElement
+            val className = elemen.enclosingElement.simpleName
+//            map.get(className)
+            var list = elemen.typeParameters
+            functionName = elemen.simpleName.toString()
+//            log("fang fa ming: ${elemen.simpleName.toString()}")//注解的方法名称
+//            log("classname: ${elemen.enclosingElement.simpleName}")//得到注解方法的类
+//            log("getTypeParameters: ${(elemen.typeParameters.toString())}")//参数类型
+//            log("getReturnType: ${(elemen.getReturnType().toString())}")//返回值
+//            log("getParameters: ${(elemen.getParameters().toString())}") //参数名称
+//            log("getThrownTypes: ${(elemen.getThrownTypes().toString())}")
+//            val variableElement = it as VariableElement
+        }
 
 
         elementsAnnotatedWith.forEach { element ->
@@ -136,7 +136,8 @@ class AptProcessor : AbstractProcessor() {
 //                                .initializer("name").build()
 //                        )
                         .addFunction(
-                            FunSpec.builder("greet")
+                            FunSpec.builder(functionName!!)
+                                .addParameter("pn",Int::class)
                                 .addStatement("println(%P)", "Hello, ").build()
                         )
                         .build()
