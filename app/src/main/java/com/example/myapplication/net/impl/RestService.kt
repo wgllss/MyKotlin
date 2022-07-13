@@ -1,12 +1,13 @@
 package com.example.myapplication.net.impl
 
 import com.atar.annotations.CreateService
+import com.example.myapplication.base.activity.BaseRepository
 import com.example.myapplication.data.BaiduDataBean
 import com.example.myapplication.data.BaseResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-@CreateService
+@CreateService(interfaceApi = RestService::class, superClass = "")
 interface RestService {
 
 //    @GET("search/acjson?tn=resultjson_com&logid=12307192414549550342&ipn=rj&ct=201326592&is=&fp=result&fr=&cg=star&rn=30")
