@@ -99,67 +99,70 @@ class AptProcessor : AbstractProcessor() {
 //            //得到包名
             var e = element
             while (e.kind != ElementKind.PACKAGE) {
-//                log("enclosingElement:${e.enclosingElement}")
                 e = e.enclosingElement
             }
-            var packageName = (e as PackageElement).toString()
-            val className = element.simpleName.toString()
-
-
+            val packageName = (e as PackageElement).toString()
             val service = element.getAnnotation(CreateService::class.java)
-            var funspecs = mutableListOf<FunSpec>()
+            val funspecs = mutableListOf<FunSpec>()
             try {
                 val clazz = Class.forName(service.interfaceApi).kotlin
                 val methods = clazz.members
                 for (m in methods) {
-                    val builder: FunSpec.Builder = FunSpec.builder(m.name)
-                    for (p in m.parameters) {
-                        p.name?.let { builder.addParameter(it, p.type.asTypeName()) }//参数名，参数类型
+                    when (m.name) {
+                        "equals" -> ""
+                        "hashCode" -> ""
+                        "toString" -> ""
+                        else -> {
+                            val builder: FunSpec.Builder = FunSpec.builder(m.name)
+                            val sb = StringBuilder()
+                            sb.append("return service.${m.name}(")
+                            for ((index, p) in m.parameters.withIndex()) {
+                                p.name?.let {
+                                    builder.addParameter(it, p.type.asTypeName())//参数名，参数类型
+                                    sb.append("${p.name}")
+                                    if (index < m.parameters.size - 1)
+                                        sb.append(",")
+                                }
+                            }
+                            sb.append(")")
+                            builder.addModifiers(KModifier.SUSPEND)
+                                .returns(m.returnType.asTypeName())//获取返回类型
+                                .addStatement(sb.toString())
+                                .addModifiers(KModifier.OVERRIDE)
+                            funspecs.add(builder.build())
+                        }
                     }
-                    builder.addModifiers(KModifier.SUSPEND)
-                        .returns(m.returnType.asTypeName())//获取返回类型
-                        .addStatement("return service.get899(word, queryWord, pn, gsm)")
-                        .addModifiers(KModifier.OVERRIDE)
-                    funspecs.add(builder.build())
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-            var greeterClass = "${className}Impl";
 
-            val superClassName = ClassName("com.example.myapplication.base.activity","BaseRepository")
-//            val superInterfaceClassName = Class.forName(service.interfaceApi).kotlin
-            val superInterfaceClassName = ClassName("com.scclzkj.api", "Api")
+            val classNameOrigin = service.interfaceApi
+            val superClassNameOrigin = service.superClass
+            val index = classNameOrigin.lastIndexOf('.')
+            val indexS = superClassNameOrigin.lastIndexOf('.')
+            val className = classNameOrigin.substring(index + 1 until classNameOrigin.length)
+            var greeterClass = "${className}Impl";
+            val superClassName = ClassName(superClassNameOrigin.substring(0 until indexS), superClassNameOrigin.substring(indexS + 1 until superClassNameOrigin.length))
+            val superInterfaceClassName = ClassName(classNameOrigin.substring(0 until index), className)
             val newSuperClassName = superClassName.parameterizedBy(superInterfaceClassName)
+            val typeSpecClassBuilder = TypeSpec.classBuilder(greeterClass)//类名
+                .primaryConstructor(//本类默认构造函数
+                    FunSpec.constructorBuilder()
+                        .addParameter("retrofit", Retrofit::class)//构造函数里面参数
+                        .addAnnotation(Inject::class.java)//构造函数加注解
+                        .build()
+                ).superclass(newSuperClassName)//继承的父类
+                .addSuperclassConstructorParameter("retrofit", Retrofit::class)//父类构造函数参数
+                .addSuperinterface(superInterfaceClassName)//父类实现接口
+            for (funspec in funspecs) {
+                typeSpecClassBuilder.addFunction(funspec)
+            }
             val file = FileSpec.builder(packageName, greeterClass)
                 .addType(
-                    TypeSpec.classBuilder(greeterClass)//类名
-                        .primaryConstructor(//本类默认构造函数
-                            FunSpec.constructorBuilder()
-                                .addParameter("retrofit", Retrofit::class)//构造函数里面参数
-                                .addAnnotation(Inject::class.java)//构造函数加注解
-                                .build()
-                        ).superclass(newSuperClassName)//继承的父类
-                        .addSuperclassConstructorParameter("retrofit", Retrofit::class)//父类构造函数参数
-                        .addSuperinterface(superInterfaceClassName)//父类实现接口
-
-//                        .addProperty(
-//                            PropertySpec.builder("name", String::class)
-//                                .initializer("name").build()
-//                        )
-                        .addFunction(funspecs!![0])
-                        .build()
-                )
-
-
-//                .addFunction(
-//                    FunSpec.builder("main")
-//                        .addParameter("args", String::class, KModifier.VARARG)
-//                        .addStatement("%T(args[0]).greet()", greeterClass).build()
-//                )
-                .build()
+                    typeSpecClassBuilder.build()
+                ).build()
             mFiler?.let { filer -> file.writeTo(filer) }
-
         }
         return true
     }
