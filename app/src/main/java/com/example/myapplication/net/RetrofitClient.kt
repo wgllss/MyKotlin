@@ -1,7 +1,7 @@
 package com.example.myapplication.net
 
+import android.content.Context
 import android.text.TextUtils
-import com.example.myapplication.application.LCApplication
 import okhttp3.Cache
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
@@ -14,41 +14,59 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-object RetrofitClient {
-    private val TIMEOUT = 60000
+class RetrofitClient(val context: Context) {
 
     //    var DEFAULT_HOST =  "https://3g.163.com/"
 
-    private var DEFAULT_HOST = "https://image.baidu.com/"
-    private val retrofit: Retrofit = Retrofit.Builder()
+    companion object {
+        private const val TIMEOUT = 60000
+        private const val DEFAULT_HOST = "https://image.baidu.com/"
+
+        @Volatile
+        private var instance: RetrofitClient? = null
+
+        @JvmStatic
+        fun getInstance(context: Context): RetrofitClient {
+            if (instance == null) {
+                synchronized(RetrofitClient::class) {
+                    if (instance == null) {
+                        instance = RetrofitClient(context)
+                    }
+                }
+            }
+            return instance!!
+        }
+    }
+
+
+    fun <T> create(service: Class<T>): T = Retrofit.Builder()
         .baseUrl(DEFAULT_HOST)
         .addConverterFactory(ScalarsConverterFactory.create())
         .addConverterFactory(GsonConverterFactory.create())
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .client(getOkhttp())
-        .build()
+        .client(okHttpClient)
+        .build().create(service)
 
-    fun <T> create(service: Class<T>): T = retrofit.create(service)
-
-    private fun getOkhttp(): OkHttpClient {
-        val logging = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
+    private val okHttpClient: OkHttpClient
+        get() {
+            val logging = HttpLoggingInterceptor().apply {
+                level = HttpLoggingInterceptor.Level.BODY
+            }
+            return OkHttpClient.Builder()
+                .addInterceptor(HeaderInterceptor()) //添加拦截器
+                .addInterceptor(logging)//添加打印日志
+                .addInterceptor(BaseUrlInterceptor())
+                .callTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置连接超时
+                .connectTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置从主机读信息超时
+                .readTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置写信息超时
+                .writeTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS)
+                .retryOnConnectionFailure(true) //设置出现错误进行重新连接。
+                .cache(Cache(context.cacheDir, 10 * 1024 * 1024)) //10M cache
+                .build()
         }
-        return OkHttpClient.Builder()
-            .addInterceptor(HeaderInterceptor()) //添加拦截器
-            .addInterceptor(logging)//添加打印日志
-            .addInterceptor(BaseUrlInterceptor())
-            .callTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置连接超时
-            .connectTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置从主机读信息超时
-            .readTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置写信息超时
-            .writeTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS)
-            .retryOnConnectionFailure(true) //设置出现错误进行重新连接。
-            .cache(Cache(LCApplication.application.getCacheDir(), 10 * 1024 * 1024)) //10M cache
-            .build()
-    }
 
 
-    class HeaderInterceptor : okhttp3.Interceptor {
+    class HeaderInterceptor : Interceptor {
 
         @Throws(IOException::class)
         override fun intercept(chain: Interceptor.Chain): okhttp3.Response {
@@ -71,7 +89,7 @@ object RetrofitClient {
     }
 
 
-    class BaseUrlInterceptor : okhttp3.Interceptor {
+    class BaseUrlInterceptor : Interceptor {
         @Volatile
         var host: String? = null
 
