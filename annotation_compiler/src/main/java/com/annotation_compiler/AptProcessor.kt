@@ -103,18 +103,12 @@ class AptProcessor : AbstractProcessor() {
                 e = e.enclosingElement
             }
             var packageName = (e as PackageElement).toString()
-            val className = element.getSimpleName().toString()
+            val className = element.simpleName.toString()
 
 
             val service = element.getAnnotation(CreateService::class.java)
-//            log("pacgageName : ${packageName}")
-//            log("className : ${className}")
-
             var funspecs = mutableListOf<FunSpec>()
             try {
-
-//                val clazz2 = ClassName(service.interfaceApi)
-//                log("88")
                 val clazz = Class.forName(service.interfaceApi).kotlin
                 val methods = clazz.members
                 for (m in methods) {
@@ -125,26 +119,18 @@ class AptProcessor : AbstractProcessor() {
                     builder.addModifiers(KModifier.SUSPEND)
                         .returns(m.returnType.asTypeName())//获取返回类型
                         .addStatement("return service.get899(word, queryWord, pn, gsm)")
+                        .addModifiers(KModifier.OVERRIDE)
                     funspecs.add(builder.build())
                 }
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
-
             var greeterClass = "${className}Impl";
 
-            val superClassName =
-               ClassName("com.example.myapplication.base.activity.BaseRepository")
-            val superInterfaceClassName = Class.forName(service.interfaceApi).kotlin
-            try {
-
-//                log("85:${superInterfaceClassName.simpleName}")
-            } catch (e: Exception) {
-                log("Exception ${e.message} \n")
-//                e.printStackTrace()
-            }
-            val newSuperClassName = superClassName.parameterizedBy(superInterfaceClassName.asTypeName())
+            val superClassName = ClassName("com.example.myapplication.base.activity","BaseRepository")
+//            val superInterfaceClassName = Class.forName(service.interfaceApi).kotlin
+            val superInterfaceClassName = ClassName("com.scclzkj.api", "Api")
+            val newSuperClassName = superClassName.parameterizedBy(superInterfaceClassName)
             val file = FileSpec.builder(packageName, greeterClass)
                 .addType(
                     TypeSpec.classBuilder(greeterClass)//类名

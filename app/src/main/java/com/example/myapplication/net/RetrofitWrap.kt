@@ -1,4 +1,4 @@
-//package com.example.myapplication.net
+package com.example.myapplication.net
 //
 //import android.os.Build
 //import android.text.TextUtils
