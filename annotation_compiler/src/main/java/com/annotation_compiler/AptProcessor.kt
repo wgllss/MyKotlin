@@ -105,9 +105,7 @@ class AptProcessor : AbstractProcessor() {
             val service = element.getAnnotation(CreateService::class.java)
             val funspecs = mutableListOf<FunSpec>()
             try {
-                val clazz = Class.forName(service.interfaceApi).kotlin
-                val methods = clazz.members
-                for (m in methods) {
+                Class.forName(service.interfaceApi).kotlin.members.forEach { m ->
                     when (m.name) {
                         "equals" -> ""
                         "hashCode" -> ""
@@ -136,7 +134,6 @@ class AptProcessor : AbstractProcessor() {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-
             val classNameOrigin = service.interfaceApi
             val superClassNameOrigin = service.superClass
             val index = classNameOrigin.lastIndexOf('.')
@@ -155,8 +152,8 @@ class AptProcessor : AbstractProcessor() {
                 ).superclass(newSuperClassName)//继承的父类
                 .addSuperclassConstructorParameter("retrofit", Retrofit::class)//父类构造函数参数
                 .addSuperinterface(superInterfaceClassName)//父类实现接口
-            for (funspec in funspecs) {
-                typeSpecClassBuilder.addFunction(funspec)
+            funspecs.forEach {
+                typeSpecClassBuilder.addFunction(it)
             }
             val file = FileSpec.builder(packageName, greeterClass)
                 .addType(
