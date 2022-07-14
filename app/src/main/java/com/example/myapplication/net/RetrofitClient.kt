@@ -1,56 +1,51 @@
 package com.example.myapplication.net
 
 import android.text.TextUtils
+import com.example.myapplication.application.LCApplication
+import okhttp3.Cache
 import okhttp3.HttpUrl
 import okhttp3.Interceptor
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.io.IOException
+import java.util.concurrent.TimeUnit
 
 object RetrofitClient {
-//    private val TIMEOUT = 60000
-//
-//    //    var DEFAULT_HOST =  "https://3g.163.com/"
-//    var DEFAULT_HOST = "https://image.baidu.com/"
-//    var level: HttpLoggingInterceptor.Level? = if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE
-//    private val headerInterceptor = HeaderInterceptor()
-//    val retrofit = Retrofit.Builder()
-//        .baseUrl(DEFAULT_HOST)
-//        .addConverterFactory(ScalarsConverterFactory.create())
-//        .addConverterFactory(GsonConverterFactory.create())
-//        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-//        .client(getOkhttp())
-//        .build()
-//
-//    val articleService = retrofit.create(RestService::class.java)
-//
-//    fun getOkhttp(): OkHttpClient {
-//        if (level == HttpLoggingInterceptor.Level.NONE) {
-//            return OkHttpClient.Builder()
-//                .addInterceptor(headerInterceptor) //添加拦截器
-//                //                  .addInterceptor(logging)//添加打印日志
-//                .addInterceptor(BaseUrlInterceptor())
-//                .callTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置连接超时
-//                .connectTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置从主机读信息超时
-//                .readTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置写信息超时
-//                .writeTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS)
-//                .retryOnConnectionFailure(true) //设置出现错误进行重新连接。
-////                    .cache(okhttp3.Cache(AppBuildConfig.getApplication().cacheDir, 10 * 1024 * 1024)) //10M cache
-//                .build()
-//        }
-//        val logging = HttpLoggingInterceptor()
-//        logging.level = level!!
-//        return OkHttpClient.Builder()
-//            .addInterceptor(headerInterceptor) //添加拦截器
-//            .addInterceptor(logging) //添加打印日志
-//            .addInterceptor(BaseUrlInterceptor())
-//            //设置连接超时
-//            .callTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS)
-//            .connectTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置从主机读信息超时
-//            .readTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置写信息超时
-//            .writeTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS)
-//            .retryOnConnectionFailure(true) //设置出现错误进行重新连接。
-////                .cache(okhttp3.Cache(AppBuildConfig.getApplication().cacheDir, 10 * 1024 * 1024)) //10M cache
-//            .build()
-//    }
+    private val TIMEOUT = 60000
+
+    //    var DEFAULT_HOST =  "https://3g.163.com/"
+
+    private var DEFAULT_HOST = "https://image.baidu.com/"
+    private val retrofit: Retrofit = Retrofit.Builder()
+        .baseUrl(DEFAULT_HOST)
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addConverterFactory(GsonConverterFactory.create())
+        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+        .client(getOkhttp())
+        .build()
+
+    fun <T> create(service: Class<T>): T = retrofit.create(service)
+
+    private fun getOkhttp(): OkHttpClient {
+        val logging = HttpLoggingInterceptor().apply {
+            level = HttpLoggingInterceptor.Level.BODY
+        }
+        return OkHttpClient.Builder()
+            .addInterceptor(HeaderInterceptor()) //添加拦截器
+            .addInterceptor(logging)//添加打印日志
+            .addInterceptor(BaseUrlInterceptor())
+            .callTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置连接超时
+            .connectTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置从主机读信息超时
+            .readTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS) //设置写信息超时
+            .writeTimeout(TIMEOUT.toLong(), TimeUnit.MILLISECONDS)
+            .retryOnConnectionFailure(true) //设置出现错误进行重新连接。
+            .cache(Cache(LCApplication.application.getCacheDir(), 10 * 1024 * 1024)) //10M cache
+            .build()
+    }
 
 
     class HeaderInterceptor : okhttp3.Interceptor {

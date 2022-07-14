@@ -146,11 +146,11 @@ class AptProcessor : AbstractProcessor() {
             val typeSpecClassBuilder = TypeSpec.classBuilder(greeterClass)//类名
                 .primaryConstructor(//本类默认构造函数
                     FunSpec.constructorBuilder()
-                        .addParameter("retrofit", Retrofit::class)//构造函数里面参数
-                        .addAnnotation(Inject::class.java)//构造函数加注解
+//                        .addParameter("retrofit", Retrofit::class)//构造函数里面参数
+//                        .addAnnotation(Inject::class.java)//构造函数加注解
                         .build()
                 ).superclass(newSuperClassName)//继承的父类
-                .addSuperclassConstructorParameter("retrofit", Retrofit::class)//父类构造函数参数
+//                .addSuperclassConstructorParameter("retrofit", Retrofit::class)//父类构造函数参数
                 .addSuperinterface(superInterfaceClassName)//父类实现接口
             funspecs.forEach {
                 typeSpecClassBuilder.addFunction(it)

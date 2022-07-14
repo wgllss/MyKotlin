@@ -1,20 +1,18 @@
 package com.example.myapplication.ui.main.viewmodel
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
 import com.example.myapplication.base.viewmodel.flowOnIOAndcatch
 import com.example.myapplication.data.BaiduDataBean
-import com.example.myapplication.ui.main.repository.BaiduRepository
+import com.example.myapplication.ui.main.kapt.ApiImpl
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.filter
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
-import android.util.Log
-import com.example.myapplication.application.LCApplication
-import javax.inject.Inject
 
 class CustomItemDataSource
 constructor(
@@ -23,15 +21,14 @@ constructor(
     val errorMsgLiveData: MutableLiveData<String> = MutableLiveData()
 ) : PageKeyedDataSource<String, BaiduDataBean>() {
 
-    @Inject
-    lateinit var repository: BaiduRepository
+    val repository by lazy { ApiImpl() }
     private lateinit var nextPageKey: String
     private var flag = 30
 
-    init {
-        LCApplication.application.appComponent.inject(this)
+//    init {
+//        LCApplication.application.appComponent.inject(this)
 //        DaggerMainComponent.create().inject(this)
-    }
+//    }
 
 
     @RequiresApi(Build.VERSION_CODES.N)
