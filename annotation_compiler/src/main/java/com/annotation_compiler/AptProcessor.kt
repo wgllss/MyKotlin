@@ -1,18 +1,22 @@
 package com.annotation_compiler
 
+import com.atar.annotations.APTMoudle
 import com.atar.annotations.AutoCreateService
 import com.atar.annotations.CreateService
 import com.google.auto.service.AutoService
 import com.squareup.kotlinpoet.*
 import com.squareup.kotlinpoet.ParameterizedTypeName.Companion.parameterizedBy
-import retrofit2.Retrofit
+import retrofit2.http.GET
 import javax.annotation.processing.*
-import javax.inject.Inject
 import javax.lang.model.SourceVersion
 import javax.lang.model.element.*
+import javax.lang.model.type.MirroredTypeException
+import javax.lang.model.type.TypeMirror
+import javax.lang.model.util.ElementFilter
 import javax.lang.model.util.Elements
 import javax.tools.Diagnostic
 import kotlin.reflect.KClass
+
 
 @AutoService(Processor::class)
 class AptProcessor : AbstractProcessor() {
@@ -46,6 +50,7 @@ class AptProcessor : AbstractProcessor() {
         // 需要解析的自定义注解
         annotations.add(CreateService::class.java)
         annotations.add(AutoCreateService::class.java)
+        annotations.add(APTMoudle::class.java)
         return annotations
     }
 
@@ -73,7 +78,82 @@ class AptProcessor : AbstractProcessor() {
      */
     override fun process(annotations: MutableSet<out TypeElement>, roundEnvironment: RoundEnvironment): Boolean {
         val elementsAnnotatedWith: Set<out Element> = roundEnvironment.getElementsAnnotatedWith(CreateService::class.java);
-        val elementsAnnotatedWith2: Set<out Element> = roundEnvironment.getElementsAnnotatedWith(AutoCreateService::class.java);
+        val elementsAnnotatedWith2: Set<out Element> = roundEnvironment.getElementsAnnotatedWith(GET::class.java);
+        val elementsAnnotatedWith23: Set<out Element> = roundEnvironment.getElementsAnnotatedWith(APTMoudle::class.java);
+
+        elementsAnnotatedWith23.forEach {
+//            val aptmoudle: APTMoudle = it.getAnnotation(APTMoudle::class.java)
+//
+////            log("aptmoudle aptmoudle")
+            try {
+//                val actionElement: Element = processingEnv.elementUtils.getTypeElement(APTMoudle::class.java.name)
+//                val actionType: TypeMirror = actionElement.asType()
+                val te: TypeElement = it as TypeElement
+
+                te.annotationMirrors.forEach outSideForEach@{ annotationmirror ->
+                    annotationmirror.elementValues.forEach { entrie ->
+                        var action: AnnotationValue? = null
+                        val value = entrie.key.simpleName.toString()
+                        if ("clazz".equals(value)) {
+                            action = entrie.value
+//                            log("action: ${ action}    action.value:  ${action.value}")
+//                            ( action as Class<out Any>)
+//                            log("action.value.javaClass: ${   action.value}   ")
+//                            action.javaClass.methods.forEach {av->
+//                                log("av.name: ${ av.name}    av.parameters:  ${av.parameters.toString()}")
+//                            }
+
+                            return@outSideForEach
+                        }
+                    }
+//                    log("annotationmirror.elementValues:${annotationmirror.elementValues.toString()} ")
+                }
+
+                ElementFilter.methodsIn(te.enclosedElements).forEach outSideForEach@{ executableelement ->
+//                    log("fang fa 5ming  :${executableelement.simpleName.toString()}")
+//                    log("classname: ${executableelement.enclosingElement.simpleName}")//得到注解方法的类
+//                    log("getTypeParameters: ${(executableelement.typeParameters.toString())}")//参数类型
+//                    log("getParameters: ${(executableelement.getParameters().toString())}") //参数名称
+//                    log("returnType: ${executableelement.returnType.toString()}") //返回参数类型
+
+
+//                    log("returnType: ${executableelement.returnType.asTypeName().toString()}") //返回参数类型
+//                    log("getTypeParameters: ${(executableelement.typeParameters.toString())}")//参数类型
+//                    log("count:${executableelement.parameters.size}")
+                    executableelement.parameters.forEach { va ->
+//                        log("name: ${va.toString()}  type:${va.asType().toString()}") //参数类型
+                    }
+
+                    executableelement.annotationMirrors.forEach { annotationmirror ->
+//                        log("annotationmirror:${annotationmirror.annotationType}")
+//                        if (annotationmirror.annotationType == actionType) {
+//                            annotationmirror.elementValues.entries.forEach { entrie ->
+//                                val value = entrie.key.simpleName.toString()
+//                                var action: AnnotationValue = entrie.value
+//                                log("action: ${ action.value}    action.value:  ${action.value}")
+//                            }
+//                        }
+                    }
+                }
+
+//                log("  actionType.kind ${actionType.toString()}")
+//                log("actionTypeName ${ actionType.toString()}")
+//                val  clazz = Class.forName(actionType.toString())
+//                clazz.methods.forEach {m->
+//                    log("name ${ m.name}")
+//                }
+//                actionType.getAnnotation(APTMoudle::class.java)?.clazz
+
+//                ( actionType as APTMoudle).clazz
+//                aptmoudle.clazz.asTypeName()
+
+            } catch (e: MirroredTypeException) {
+                e.printStackTrace()
+            } catch (e: Exception) {
+//                log("aptmoudle2 ${e.typeMirror.}")
+                e.printStackTrace()
+            }
+        }
 
         var map: Map<String, List<ExecutableElement>> = mutableMapOf()
         var functionName: String? = null
@@ -91,9 +171,9 @@ class AptProcessor : AbstractProcessor() {
 //            log("returnType: ${elemen.returnType.asTypeName().toString()}") //返回参数类型
 //            log("getTypeParameters: ${(elemen.typeParameters.toString())}")//参数类型
 
-            elemen.parameters.forEach {
-                log("name: ${it.toString()}  type:${it.asType().toString()}") //参数类型
-            }
+//            elemen.parameters.forEach {
+//                log("name: ${it.toString()}  type:${it.asType().toString()}") //参数类型
+//            }
 //            log("getThrownTypes: ${(elemen.getThrownTypes().toString())}")
 //            val variableElement = it as VariableElement
         }

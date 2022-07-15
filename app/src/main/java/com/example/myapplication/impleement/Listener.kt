@@ -1,13 +1,14 @@
 package com.example.myapplication.impleement
 
-import com.atar.annotations.AutoCreateService
+import com.atar.annotations.APTMoudle
 import com.example.myapplication.data.BaiduDataBean
 import com.example.myapplication.data.BaseResponse
+import retrofit2.http.GET
 import retrofit2.http.Query
 
+@APTMoudle(Listener::class)
 interface Listener {
 
-    @AutoCreateService
-    fun run(@Query("word") word: String, @Query("queryWord") queryWord: String, @Query("pn") pn: Int, @Query("gsm") gsm: String): BaseResponse<ArrayList<BaiduDataBean>>;
-
+    @GET("search/acjson?tn=resultjson_com&logid=12307192414549550342&ipn=rj&ct=201326592&is=&fp=result&fr=&cg=star&rn=30")
+    suspend fun ALBB(@Query("word") word: String, @Query("queryWord") queryWord: String, @Query("pn") pn: Int, @Query("gsm") gsm: String): BaseResponse<ArrayList<BaiduDataBean>>
 }
