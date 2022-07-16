@@ -1,19 +1,17 @@
 package com.example.myapplication.ui.main.viewmodel
 
 import android.os.Build
+import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.PageKeyedDataSource
+import com.example.myapplication.application.LCApplication
 import com.example.myapplication.base.viewmodel.flowOnIOAndcatch
 import com.example.myapplication.data.BaiduDataBean
-import com.example.myapplication.ui.main.repository.BaiduRepository
+import com.scclzkj.api.Api
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.filter
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
-import android.util.Log
-import com.example.myapplication.application.LCApplication
 import javax.inject.Inject
 
 class CustomItemDataSource
@@ -24,7 +22,7 @@ constructor(
 ) : PageKeyedDataSource<String, BaiduDataBean>() {
 
     @Inject
-    lateinit var repository: BaiduRepository
+    lateinit var repository: Api
     private lateinit var nextPageKey: String
     private var flag = 30
 
@@ -56,18 +54,20 @@ constructor(
         coroutinescope.launch {
             flow {
                 emit(repository.get899(searchContent.value!!, searchContent.value!!, pn!!, gsm))
+            }.onStart {
+
             }.filter {
                 it.data.removeIf { im ->
                     im.middleURL == null
                 }
+            }.onEach {
+                callback?.onResult(it.data, it.gsm)
+                Log.e(javaClass.simpleName, "it.data--->${it.data.size} --gsm-->${it.gsm}")
+                loadinitialcallback?.onResult(it.data, "", it.gsm)
+                nextPageKey = it.gsm
+                flag = pn
             }.flowOnIOAndcatch(errorMsgLiveData)
-                .collect {
-                    callback?.onResult(it.data, it.gsm)
-                    Log.e(javaClass.simpleName, "it.data--->${it.data.size} --gsm-->${it.gsm}")
-                    loadinitialcallback?.onResult(it.data, "", it.gsm)
-                    nextPageKey = it.gsm
-                    flag = pn
-                }
+                .collect()
         }
     }
 }

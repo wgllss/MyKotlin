@@ -3,6 +3,7 @@ package com.example.myapplication.ui.main.dagger2
 import android.app.Application
 import android.content.Context
 import com.example.myapplication.net.RetrofitClient
+import com.scclzkj.api.Api
 import dagger.Module
 import dagger.Provides
 import okhttp3.Cache
@@ -54,4 +55,7 @@ class ApplicationModule(private var application: Application) {
             .build()
     }
 
+    @Provides
+    @Singleton
+    fun providerApi(retrofit: Retrofit): Api = retrofit.create(Api::class.java)
 }
