@@ -8,7 +8,10 @@ import androidx.paging.PageKeyedDataSource
 import com.example.myapplication.application.LCApplication
 import com.example.myapplication.base.viewmodel.flowOnIOAndcatch
 import com.example.myapplication.data.BaiduDataBean
+import com.example.myapplication.ui.main.hint.InitializerEntryPoint
 import com.scclzkj.api.Api
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -21,14 +24,16 @@ constructor(
     val errorMsgLiveData: MutableLiveData<String> = MutableLiveData()
 ) : PageKeyedDataSource<String, BaiduDataBean>() {
 
-    @Inject
+    //    @Inject
     lateinit var repository: Api
     private lateinit var nextPageKey: String
     private var flag = 30
 
     init {
-        LCApplication.application.appComponent.inject(this)
+//        LCApplication.application.appComponent.inject(this)
 //        DaggerMainComponent.create().inject(this)
+        repository = InitializerEntryPoint.resolve(LCApplication.application).injectAPi()
+        Log.e("wg","repository ${repository.toString()}")
     }
 
 

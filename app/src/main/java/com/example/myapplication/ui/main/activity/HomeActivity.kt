@@ -6,9 +6,15 @@ import com.example.myapplication.R
 import com.example.myapplication.base.activity.BaseMvvmActivity
 import com.example.myapplication.databinding.ActivityHomeBinding
 import com.example.myapplication.ui.main.viewmodel.HomeViewModel
+import com.scclzkj.api.Api
+import dagger.hilt.android.AndroidEntryPoint
+import javax.inject.Inject
+import android.util.Log
 
+@AndroidEntryPoint
 class HomeActivity : BaseMvvmActivity<HomeViewModel, ActivityHomeBinding>(), View.OnClickListener {
-
+    @Inject
+    lateinit var repository: Api
     override fun getLayoutID(): Int {
         return R.layout.activity_home
     }
@@ -17,6 +23,7 @@ class HomeActivity : BaseMvvmActivity<HomeViewModel, ActivityHomeBinding>(), Vie
         binding.homeViewModel = viewModel
         binding.activity = this
         binding.executePendingBindings()
+        Log.e("wg","api ${repository.hashCode()}")
     }
 
     override fun onClick(v: View?) {
