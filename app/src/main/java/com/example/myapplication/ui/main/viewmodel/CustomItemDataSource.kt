@@ -23,17 +23,12 @@ constructor(
     private var searchContent: MutableLiveData<String>,
     val errorMsgLiveData: MutableLiveData<String> = MutableLiveData()
 ) : PageKeyedDataSource<String, BaiduDataBean>() {
-
-    //    @Inject
-    lateinit var repository: Api
+    val repository by lazy { InitializerEntryPoint.resolve(LCApplication.application).injectAPi() }
     private lateinit var nextPageKey: String
     private var flag = 30
 
     init {
-//        LCApplication.application.appComponent.inject(this)
-//        DaggerMainComponent.create().inject(this)
-        repository = InitializerEntryPoint.resolve(LCApplication.application).injectAPi()
-        Log.e("wg","repository ${repository.toString()}")
+        Log.e("wg", "repository ${repository.toString()}")
     }
 
 
