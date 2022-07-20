@@ -1,13 +1,11 @@
 package com.example.myapplication.ui.main.hint
 
-import android.app.Application
 import android.content.Context
 import com.example.myapplication.net.RetrofitClient
 import com.scclzkj.api.Api
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import okhttp3.Cache
