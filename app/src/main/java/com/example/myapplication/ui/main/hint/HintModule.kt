@@ -6,8 +6,8 @@ import com.scclzkj.api.Api
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -18,7 +18,7 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 @Module
 class HintModule {
     private val url = "https://image.baidu.com/"

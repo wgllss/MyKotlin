@@ -1,7 +1,6 @@
 package com.example.myapplication.ui.main.fragment
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
@@ -13,8 +12,6 @@ import com.example.myapplication.ui.main.adapter.ImageAdapter
 import com.example.myapplication.ui.main.viewmodel.MainViewModel
 import com.example.myapplication.widget.OnRecyclerVIewItemClickLIstener
 import com.scwang.smart.refresh.layout.api.RefreshLayout
-import java.util.*
-import kotlin.reflect.KClass
 
 class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainFragmentBinding>() {
     var searchContent: String? = null
