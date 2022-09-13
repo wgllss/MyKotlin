@@ -3,6 +3,8 @@ package com.example.myapplication.ui.main.hint
 import android.content.Context
 import com.example.myapplication.net.RetrofitClient
 import com.scclzkj.api.Api
+import com.squareup.moshi.KotlinJsonAdapterFactory
+import com.squareup.moshi.Moshi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,9 +14,10 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
-import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.converter.scalars.ScalarsConverterFactory
+import retrofit2.converter.moshi.MoshiConverterFactory
+//import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+//import retrofit2.converter.gson.GsonConverterFactory
+//import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -26,7 +29,7 @@ class HintModule {
 
     @Provides
     @Singleton
-    fun provideRetrofit(@ApplicationContext application:Context): Retrofit {
+    fun provideRetrofit(@ApplicationContext application: Context): Retrofit {
         val logging = HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
@@ -44,11 +47,13 @@ class HintModule {
             .retryOnConnectionFailure(true)//设置出现错误进行重新连接。
             .cache(Cache(application.cacheDir, 50 * 1024 * 1024)) //10M cache
             .build();
+        val moshi =Moshi.Builder().addLast(KotlinJsonAdapterFactory()).build()
         return Retrofit.Builder()
             .client(okHttpClient)
-            .addConverterFactory(ScalarsConverterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(MoshiConverterFactory.create(moshi))
+//            .addConverterFactory(ScalarsConverterFactory.create())
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .baseUrl(url)
             .build()
     }

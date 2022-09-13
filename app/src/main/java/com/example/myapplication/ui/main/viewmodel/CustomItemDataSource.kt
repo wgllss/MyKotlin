@@ -58,7 +58,7 @@ constructor(
 
             }.filter {
                 it.data.removeIf { im ->
-                    im.middleURL == null
+                    im.middleURL == null || im.middleURL == ""
                 }
             }.onEach {
                 callback?.onResult(it.data, it.gsm)

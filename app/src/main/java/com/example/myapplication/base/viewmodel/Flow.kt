@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.application.LCApplication
-import com.google.gson.JsonSyntaxException
+//import com.google.gson.JsonSyntaxException
 import isNetWorkActive
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -22,7 +22,8 @@ fun Throwable?.parseErrorString(): String {
         is SocketException -> getString(R.string.SocketException)
         is ConnectException -> getString(R.string.ConnectException)
         is UnknownHostException -> getString(R.string.UnknownHostException)
-        is JsonSyntaxException -> getString(R.string.JsonSyntaxException)
+//        is JsonSyntaxException -> getString(R.string.JsonSyntaxException)
+//        is JsonSyntaxException -> getString(R.string.JsonSyntaxException)
         is SocketTimeoutException -> getString(R.string.SocketTimeoutException)
         is TimeoutException -> getString(R.string.SocketTimeoutException)
         is IllegalArgumentException -> {

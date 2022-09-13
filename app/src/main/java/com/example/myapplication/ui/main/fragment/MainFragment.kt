@@ -45,7 +45,7 @@ class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainF
         binding.recycler.addOnItemTouchListener(object : OnRecyclerVIewItemClickLIstener(binding.recycler) {
             override fun onItemClickListener(viewHolder: RecyclerView.ViewHolder?, position: Int) {
                 var imgList = ArrayList<String>()
-                imgList.add(viewModel.listData?.value?.get(position)!!.middleURL)
+                imgList.add(viewModel.listData?.value?.get(position)!!.middleURL!!)
                 ShowImageActivity.startShowImage(activity, imgList, 0)
             }
             override fun onItemLongClickListener(viewHolder: RecyclerView.ViewHolder?, position: Int) {
