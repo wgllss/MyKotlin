@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
     <data>
+
         <variable
             name="homeViewModel"
             type="com.example.myapplication.ui.main.viewmodel.HomeViewModel" />
@@ -9,35 +11,65 @@
             name="activity"
             type="com.example.myapplication.ui.main.activity.HomeActivity" />
     </data>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_ffffffff"
-        android:padding="@dimen/common_ui_font_size_20"
-        android:orientation="vertical"
-        android:gravity="center"
-        tools:context=".ui.main.activity.HomeActivity">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.AppCompatEditText
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/common_ui_size_80"
+            android:layout_height="match_parent"
             android:background="@color/color_ffffffff"
-            android:text="@={homeViewModel.searchContent}"
-            android:textSize="@dimen/common_ui_font_size_16"
-            android:textColor="@color/color_FF010101"
-            android:hint="请输入搜索内容"
-            android:id="@+id/edit_serach_content"
-            />
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="@dimen/common_ui_font_size_20"
+            tools:context=".ui.main.activity.HomeActivity">
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/btn_search"
-            android:layout_width="match_parent"
-            android:layout_marginTop="@dimen/common_ui_font_size_20"
-            android:text="搜索"
-            android:onClick="@{activity::onClick}"
-            android:layout_height="@dimen/common_ui_size_50"/>
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/edit_serach_content"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_ui_size_80"
+                android:layout_marginTop="30dp"
+                android:background="@color/color_ffffffff"
+                android:hint="请输入搜索内容"
+                android:text="@={homeViewModel.searchContent}"
+                android:textColor="@color/color_FF010101"
+                android:textSize="@dimen/common_ui_font_size_16" />
 
-    </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_search"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_ui_size_50"
+                android:layout_marginTop="@dimen/common_ui_font_size_20"
+                android:onClick="@{activity::onClick}"
+                android:text="搜索" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/test_inflater"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_ui_size_50"
+                android:layout_marginTop="@dimen/common_ui_font_size_20"
+                android:onClick="@{activity::onClick}"
+                android:text="TestInflater" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/test_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_ui_size_50"
+                android:layout_marginTop="@dimen/common_ui_font_size_20"
+                android:onClick="@{activity::onClick}"
+                android:text="Test_layout" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/moshi"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_ui_size_50"
+                android:layout_marginTop="@dimen/common_ui_font_size_20"
+                android:onClick="@{activity::onClick}"
+                android:text="moshi" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 </layout>

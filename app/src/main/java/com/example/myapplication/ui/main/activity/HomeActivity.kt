@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.main.activity
 
+import android.content.Intent
 import android.text.TextUtils
 import android.view.View
 import com.example.myapplication.R
@@ -23,7 +24,7 @@ class HomeActivity : BaseMvvmActivity<HomeViewModel, ActivityHomeBinding>(), Vie
         binding.homeViewModel = viewModel
         binding.activity = this
         binding.executePendingBindings()
-        Log.e("wg","api ${repository.hashCode()}")
+        Log.e("wg", "api ${repository.hashCode()}")
     }
 
     override fun onClick(v: View?) {
@@ -34,7 +35,16 @@ class HomeActivity : BaseMvvmActivity<HomeViewModel, ActivityHomeBinding>(), Vie
                     onToast("请输入搜索内容")
                     return
                 }
-                TestActivity.startTestActivity(this,content)
+                TestActivity.startTestActivity(this, content)
+            }
+            R.id.test_layout -> {
+                startActivity(Intent(this, TestLayoutActivity::class.java))
+            }
+            R.id.test_inflater -> {
+                startActivity(Intent(this, TestInflaterActivity::class.java))
+            }
+            R.id.moshi -> {
+                startActivity(Intent(this, TestMoshiActivity::class.java))
             }
         }
     }

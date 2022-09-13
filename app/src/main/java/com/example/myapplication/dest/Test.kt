@@ -1,6 +1,7 @@
 package com.example.myapplication.dest
 
-class Test private constructor() {
+class Test private constructor() : Cloneable{
+
     companion object {
         private var mInstance: Test? = null
             get() {
@@ -17,4 +18,6 @@ class Test private constructor() {
     fun print(){
         println("wg wg ")
     }
+
+
 }

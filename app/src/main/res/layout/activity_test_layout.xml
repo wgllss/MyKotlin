@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context=".ui.main.activity.TestLayoutActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="@dimen/item_hot_width"
+        android:layout_height="@dimen/item_hot_height">
+
+        <View
+            android:id="@+id/view_item_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/corners_withe_shadow_bg"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_hot_goods"
+            android:layout_width="@dimen/item_hot_image_width"
+            android:layout_height="@dimen/item_hot_image_height"
+            android:layout_marginTop="5dp"
+            android:scaleType="fitXY"
+            app:layout_constraintLeft_toLeftOf="@id/view_item_bg"
+            app:layout_constraintRight_toRightOf="@id/view_item_bg"
+            app:layout_constraintTop_toTopOf="@id/view_item_bg" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_hot_goods_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="香甜西红柿"
+            android:textColor="@color/color_A0A0A0"
+            android:textSize="24dp"
+            app:layout_constraintLeft_toLeftOf="@id/img_hot_goods"
+            app:layout_constraintTop_toBottomOf="@id/img_hot_goods"
+            tools:ignore="MissingConstraints,UnknownId" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_origal_price"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="¥3000.95"
+            android:textColor="@color/color_D1D1D1"
+            android:textSize="18dp"
+            app:layout_constraintLeft_toLeftOf="@id/img_hot_goods"
+            app:layout_constraintTop_toBottomOf="@id/txt_hot_goods_name" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/txt_price"
+            android:layout_width="93dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="¥3000.95"
+            android:textColor="@color/color_FF0000"
+            android:textSize="22dp"
+            app:layout_constraintLeft_toLeftOf="@id/img_hot_goods"
+            app:layout_constraintTop_toBottomOf="@id/txt_origal_price" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="79dp"
+            android:layout_height="31dp"
+            android:layout_marginTop="8dp"
+            android:background="@drawable/item_hot_disscount_bg_gradient"
+            android:gravity="center"
+            android:text="-23%"
+            android:textColor="@color/color_ffffffff"
+            android:textSize="18dp"
+            app:layout_constraintRight_toRightOf="@id/img_hot_goods"
+            app:layout_constraintTop_toBottomOf="@id/txt_hot_goods_name" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/item_hot_add_button_size"
+            android:layout_height="@dimen/item_hot_add_button_size"
+            android:layout_marginTop="5dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_add"
+            app:layout_constraintLeft_toLeftOf="@id/view_item_bg"
+            app:layout_constraintRight_toRightOf="@id/view_item_bg"
+            app:layout_constraintTop_toBottomOf="@id/txt_price" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/menu_red_point_bg"
+            android:gravity="center"
+            android:text="99+"
+            android:textColor="@color/color_ffffffff"
+            android:textSize="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <FrameLayout
+        android:layout_width="@dimen/item_hot_width"
+        android:layout_height="@dimen/item_hot_height">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|left"
+            android:layout_marginTop="5dp"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/corners_withe_shadow_bg"
+            android:clickable="true"
+            android:foreground="?android:attr/selectableItemBackground" />
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/item_hot_image_width"
+            android:layout_height="@dimen/item_hot_image_height"
+            android:layout_gravity="left|top"
+            android:layout_marginLeft="19dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="fitXY" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_gravity="top|left"
+            android:layout_marginTop="145dp"
+            android:layout_marginRight="5dp"
+            android:text="香甜西红柿兰江"
+            android:textColor="@color/color_A0A0A0"
+            android:textSize="24dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="80dp"
+            android:layout_height="31dp"
+            android:layout_gravity="bottom|left"
+            android:layout_marginBottom="83dp"
+            android:text="¥3000.95"
+            android:textColor="@color/color_D1D1D1"
+            android:textSize="18dp" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="93dp"
+            android:layout_height="25dp"
+            android:layout_gravity="left|bottom"
+            android:layout_marginBottom="68dp"
+            android:text="¥3000.95"
+            android:textColor="@color/color_FF0000"
+            android:textSize="22dp"
+            app:layout_constraintLeft_toLeftOf="@id/img_hot_goods"
+            app:layout_constraintTop_toBottomOf="@id/txt_origal_price" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="79dp"
+            android:layout_height="31dp"
+            android:layout_gravity="bottom|right"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="83dp"
+            android:background="@drawable/item_hot_disscount_bg_gradient"
+            android:gravity="center"
+            android:text="-23%"
+            android:textColor="@color/color_ffffffff"
+            android:textSize="18dp" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:layout_width="@dimen/item_hot_add_button_size"
+            android:layout_height="@dimen/item_hot_add_button_size"
+            android:layout_gravity="center_horizontal|bottom"
+            android:scaleType="fitCenter"
+            android:src="@drawable/icon_add" />
+
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_gravity="top|right"
+            android:background="@drawable/menu_red_point_bg"
+            android:gravity="center"
+            android:text="99+"
+            android:textColor="@color/color_ffffffff"
+            android:textSize="16dp"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </FrameLayout>
+
+
+</LinearLayout>

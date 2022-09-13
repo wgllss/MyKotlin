@@ -15,4 +15,6 @@ open class BaseViewModel : ViewModel() {
         Log.e(javaClass.simpleName, "线程-launch2-->${Thread.currentThread().name}")
         return viewModelScope
     }
+
+    open fun start() {}
 }

@@ -175,4 +175,48 @@
     <dimen name="sub_common_ui_font_size_15">15sp</dimen>
     <!-- 字体大小*****************end********************************-->
 
+    <dimen name="head_height">56dp</dimen>
+    <dimen name="head_logo_size_width">42dp</dimen>
+    <dimen name="head_logo_size_height">40dp</dimen>
+
+    <dimen name="head_switch_widget_width">392dp</dimen>
+    <dimen name="heat_user_img_size">36dp</dimen>
+    <dimen name="menu_width">156dp</dimen>
+    <dimen name="menu_tab_button_width">110dp</dimen>
+    <dimen name="menu_tab_img_size">50dp</dimen>
+    <dimen name="menu_pay_button_width">78dp</dimen>
+
+    <dimen name="home_ad_width">805dp</dimen>
+    <dimen name="home_ad_height">361dp</dimen>
+    <dimen name="home_left_margin">23dp</dimen>
+    <dimen name="home_top_margin_header">23dp</dimen>
+    <dimen name="layout_search_height">54dp</dimen>
+    <dimen name="home_hot_goods_top_margin_header">19dp</dimen>
+    <dimen name="home_cart_title_height">97dp</dimen>
+    <dimen name="home_cart_info_height">94dp</dimen>
+    <dimen name="home_hot_goods_height">308dp</dimen>
+    <dimen name="item_hot_width">205dp</dimen>
+    <dimen name="item_hot_height">303dp</dimen>
+    <dimen name="item_hot_image_width">162dp</dimen>
+    <dimen name="item_hot_image_height">134dp</dimen>
+    <dimen name="item_hot_discount_width">51dp</dimen>
+    <dimen name="item_hot_discount_height">25dp</dimen>
+    <dimen name="item_hot_add_button_size">58dp</dimen>
+    <dimen name="item_recognize_height">133dp</dimen>
+    <dimen name="item_recognize_width">158dp</dimen>
+    <dimen name="key_width">136dp</dimen>
+    <dimen name="key_height">113dp</dimen>
+    <!--  尺寸 size 大小 end  -->
+
+    <!--  字体 size 大小 start  -->
+    <dimen name="txt_size_18">18dp</dimen>
+    <dimen name="txt_size_32">32dp</dimen>
+    <dimen name="txt_size_26">26dp</dimen>
+    <dimen name="txt_size_24">24dp</dimen>
+    <dimen name="txt_size_28">28dp</dimen>
+    <dimen name="txt_size_31">31dp</dimen>
+    <dimen name="txt_size_30">30dp</dimen>
+    <dimen name="txt_size_37">37dp</dimen>
+    <!--  字体 size 大小 end  -->
+
 </resources>
