@@ -12,7 +12,9 @@ import com.example.myapplication.ui.main.adapter.ImageAdapter
 import com.example.myapplication.ui.main.viewmodel.MainViewModel
 import com.example.myapplication.widget.OnRecyclerVIewItemClickLIstener
 import com.scwang.smart.refresh.layout.api.RefreshLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainFragmentBinding>() {
     var searchContent: String? = null
 

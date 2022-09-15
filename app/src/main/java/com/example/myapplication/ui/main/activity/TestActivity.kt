@@ -12,7 +12,9 @@ import com.example.myapplication.data.Bean
 import com.example.myapplication.ui.main.fragment.MainFragment
 import com.example.myapplication.data.Response
 import com.example.myapplication.dest.Test
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class TestActivity : BaseActivity(), View.OnClickListener {
     val TAG = "MainActivity"
     val s: String = "我是String类型的";

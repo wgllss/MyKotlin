@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.ComponentActivity
+import androidx.annotation.MainThread
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelLazy
 import androidx.lifecycle.ViewModelProvider
 import com.example.myapplication.base.viewmodel.BaseViewModel
 import java.lang.reflect.ParameterizedType
@@ -21,22 +24,28 @@ abstract class BaseMvvmFragment<VM : BaseViewModel, DB : ViewDataBinding> : Base
     ): View? {
         binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         binding.lifecycleOwner = this
-        initViewModel()
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
-        initViewModel()
+        activity?.let {
+            viewModel = lazyViewModels(it).value
+            initObserve()
+        }
         initObserve()
     }
 
-    private fun initViewModel() {
-        val type = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
-        type?.let {
-            viewModel = ViewModelProvider(this).get(it)
-        }
+    /**
+     * activity 和 fragmnet 是否公用同一个viewModel
+     */
+    protected open fun activitySameViewModel() = false
 
+    @MainThread
+    private fun lazyViewModels(activity: ComponentActivity): Lazy<VM> {
+        val cls = (javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as Class<VM>
+        return if (activitySameViewModel()) ViewModelLazy(cls.kotlin, { activity.viewModelStore }, { activity.defaultViewModelProviderFactory })
+        else ViewModelLazy(cls.kotlin, { viewModelStore }, { defaultViewModelProviderFactory })
     }
 
 
