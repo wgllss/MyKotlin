@@ -23,7 +23,7 @@ ext {
     targetSdkVersion = 30
     supportVersion = "30.0.3"
 
-    libSupportAppcompat_v7 = 'androidx.appcompat:appcompat:1.1.0'
+    libSupportAppcompat_v7 = 'androidx.appcompat:appcompat:1.3.0'
     libSupportRecyclerView = 'androidx.recyclerview:recyclerview:1.1.0'
     libSupportdesign = 'com.google.android.material:material:1.1.0'
 }

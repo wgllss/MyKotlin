@@ -15,7 +15,7 @@ open class MainViewModel() : BaseViewModel() {
     lateinit var listData: LiveData<PagedList<BaiduDataBean>>
 
     fun invalidateDataSource() {
-        factory.liveDataSource.value?.invalidate()
+        factory.dataSource?.invalidate()
     }
 
     fun initFatory() {

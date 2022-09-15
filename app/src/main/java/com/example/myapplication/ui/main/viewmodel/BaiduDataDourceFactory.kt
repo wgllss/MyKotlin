@@ -11,12 +11,12 @@ constructor(
     private var searchContent: MutableLiveData<String>,
     val errorMsgLiveData: MutableLiveData<String>
 ) : DataSource.Factory<String, BaiduDataBean>() {
-    val liveDataSource = MutableLiveData<CustomItemDataSource>()
-
+    //    val liveDataSource = MutableLiveData<CustomItemDataSource>()
+    lateinit var dataSource: DataSource<String, BaiduDataBean>
 
     override fun create(): DataSource<String, BaiduDataBean> {
-        val dataSource = CustomItemDataSource(coroutinescope, searchContent, errorMsgLiveData)
-        liveDataSource.postValue(dataSource)
+        dataSource = CustomItemDataSource(coroutinescope, searchContent, errorMsgLiveData)
+//        liveDataSource.postValue(dataSource)
         return dataSource
     }
 }
