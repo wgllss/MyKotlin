@@ -64,12 +64,16 @@ object RetrofitClient {
                 .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36") //
                 .addHeader("Accept-Language", "zh-CN,zh;q=0.9") //
                 .addHeader("Upgrade-insecure-Requests", "1") //
+//                .addHeader("Referrer-Policy", "no-referrer") //
+//                .addHeader("X-Content-Type-Options", "nosniff") //
+//                .addHeader("transfer-encoding", "chunked") //
+//                .addHeader("Accept-Encoding", "gzip, deflate, br") //
 //                .addHeader("Cookie", "BIDUPSID=0939E0C572A9F7B865E1F5E0554E6D18; PSTM=1637380599; __yjs_duid=1_8437eab0557dbe6a1ceb275834524f481637475509307; indexPageSugList=[\"黄美姬\",\"绿色桌面护眼1920X1080\",\"桌面壁纸\",\"桌面\",\"绿色背景图片\"]; MCITY=-307:301:75:; BDUSS_BFESS=UFhTGRRUExUZm1Oak1ncmE3dFNZMm5oeTFMM0psUUUxaGpWQnYzM0lZV2FqMk5pSUFBQUFBJCQAAAAAAAAAAAEAAAC344NTQXRhcjg4ODgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJoCPGKaAjxia; BAIDUID=B48ED4CBE31306C6DB06B55B9C243470:FG=1; BAIDUID_BFESS=B48ED4CBE31306C6DB06B55B9C243470:FG=1; BDORZ=B490B5EBF6F3CD402E515D22BCDA1598; BDRCVFR[-pGxjrCMryR]=mk3SLVN4HKm") //
                 // .addHeader("Connection", "close")
                 // .addHeader("X-ZZ-Timestamp", timestamp)
 //                .addHeader("X-ZZ-Device-Sn", Build.SERIAL)
 //                .addHeader("v", PackageUtil.getVersionCode(AppBuildConfig.getApplication()).toString() + "")
-//                .addHeader("POS-Authorization", PreferenceUtil.getInstance().token)
+                .addHeader("Authorization", "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX25hbWUiOiIxMzUwMDAwMTExMiIsIm9wZW5pZCI6bnVsbCwic2NvcGUiOlsiYWxsIl0sImlkIjoxMywiZXhwIjoxNjY1NjQ2OTg1LCJhdXRob3JpdGllcyI6WyI1X-i2hee6p-euoeeQhuWRmCJdLCJqdGkiOiI0OTU3MDlkZC0wMTI2LTQ4YzMtOGRlNS04NGRjN2U0YmM4ZmUiLCJjbGllbnRfaWQiOiJjdXN0b21lci1hcHAifQ.WnXdYM__dOCWF_NOFgyHL-BoFnO2JDuhzriqO3foB3nbDgCv_jEpM7RZhDMBp9gP8v_46y0D9eindCVcASf_YDBVM_l3Rs3QiB16bjeKQpVcxJMyZzRz36Wz-i7XVNHCL9gDtL7WC9XUw8XU48vrCeHRCZzTBjmIsUNNcVHSXlQ")
                 .build()
             return chain.proceed(authorised)
         }

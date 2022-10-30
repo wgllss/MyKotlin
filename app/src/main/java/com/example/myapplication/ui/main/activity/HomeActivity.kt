@@ -46,6 +46,9 @@ class HomeActivity : BaseMvvmActivity<HomeViewModel, ActivityHomeBinding>(), Vie
             R.id.moshi -> {
                 startActivity(Intent(this, TestMoshiActivity::class.java))
             }
+            R.id.net -> {
+                startActivity(Intent(this, TestNetActivity::class.java))
+            }
         }
     }
 }

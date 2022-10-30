@@ -2,11 +2,17 @@ package com.scclzkj.api
 
 import com.example.myapplication.data.BaiduDataBean
 import com.example.myapplication.data.BaseResponse
+import okhttp3.RequestBody
+import retrofit2.http.Body
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Query
 
 interface Api {
 
     @GET("search/acjson?tn=resultjson_com&logid=12307192414549550342&ipn=rj&ct=201326592&is=&fp=result&fr=&cg=star&rn=30")
     suspend fun get899(@Query("word") word: String, @Query("queryWord") queryWord: String, @Query("pn") pn: Int, @Query("gsm") gsm: String): BaseResponse<MutableList<BaiduDataBean>>
+
+    @POST("http://clz.aiddys.cn:9999/pay-c/order/pay/prePay")
+    suspend fun prePay(@Body body: RequestBody): String
 }

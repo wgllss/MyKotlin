@@ -70,6 +70,14 @@
                 android:onClick="@{activity::onClick}"
                 android:text="moshi" />
 
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/net"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/common_ui_size_50"
+                android:layout_marginTop="@dimen/common_ui_font_size_20"
+                android:onClick="@{activity::onClick}"
+                android:text="net" />
+
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </layout>

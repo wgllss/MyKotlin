@@ -3,6 +3,7 @@ package com.example.myapplication.ui.main.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.paging.DataSource
 import com.example.myapplication.data.BaiduDataBean
+import com.example.myapplication.ex.logE
 import kotlinx.coroutines.CoroutineScope
 
 class BaiduDataDourceFactory
@@ -15,6 +16,10 @@ constructor(
     lateinit var dataSource: DataSource<String, BaiduDataBean>
 
     override fun create(): DataSource<String, BaiduDataBean> {
+
+        logE("BaiduDataDourceFactory create ")
+
+
         dataSource = CustomItemDataSource(coroutinescope, searchContent, errorMsgLiveData)
 //        liveDataSource.postValue(dataSource)
         return dataSource

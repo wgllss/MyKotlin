@@ -42,6 +42,9 @@
         <activity
             android:name=".ui.main.activity.TestMoshiActivity"
             android:theme="@style/AppTheme" />
+        <activity
+            android:name=".ui.main.activity.TestNetActivity"
+            android:theme="@style/AppTheme" />
     </application>
 
 </manifest>
