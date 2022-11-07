@@ -9,7 +9,6 @@ import com.example.myapplication.net.RetrofitClient
 //import com.example.myapplication.ui.main.dagger2.DaggerAppComponent
 import com.example.myapplication.uitls.AppBuildConfig
 import dagger.hilt.android.HiltAndroidApp
-import okhttp3.logging.HttpLoggingInterceptor
 @HiltAndroidApp
 class LCApplication : Application() {
 
