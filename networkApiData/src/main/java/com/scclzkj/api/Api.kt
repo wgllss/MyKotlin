@@ -3,6 +3,8 @@ package com.scclzkj.api
 import com.example.myapplication.data.BaiduDataBean
 import com.example.myapplication.data.BaseResponse
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
+import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -15,4 +17,8 @@ interface Api {
 
     @POST("http://clz.aiddys.cn:9999/pay-c/order/pay/prePay")
     suspend fun prePay(@Body body: RequestBody): String
+
+
+    @GET("https://www.hifini.com/get_music.php?key=f64jyoHzZz8hxlhYVa0CUD9XmZq926FjKz9fVELdF299ItK547n3PLnwrTKamHGx")
+    suspend fun getMusic(): Response<ResponseBody>
 }

@@ -32,9 +32,17 @@ class TestNetActivity : BaseActivity(), View.OnClickListener {
 
     }
 
+    fun onClick1(v: View?) {
+        lifecycleScope.launch {
+            val result = api.getMusic()
+
+            logE("result---> ${   result.raw().request.url}")
+        }
+    }
+
     override fun onClick(v: View?) {
         lifecycleScope.launch {
-            try{
+            try {
                 val body = "{\n" +
                         "    \"unifiedPayNo\": \"P202210130915000001\",\n" +
                         "    \"payMethod\": 2,\n" +
@@ -42,10 +50,10 @@ class TestNetActivity : BaseActivity(), View.OnClickListener {
                         "    \"orderType\": 2,\n" +
                         "    \"authCode\": \"\"\n" +
                         "}"
-                val requestBody: RequestBody = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(),body)
+                val requestBody: RequestBody = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), body)
                 val result = api.prePay(requestBody)
                 logE("result---> ${result}")
-            }catch (e:Exception){
+            } catch (e: Exception) {
                 e.printStackTrace()
             }
         }
