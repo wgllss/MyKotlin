@@ -17,12 +17,10 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainFragment(private val content: String) : RefreshLayoutFragment<MainViewModel, MainFragmentBinding>() {
-    var searchContent: String? = null
 
     companion object {
         fun newInstance(content: String): MainFragment {
             var instance = MainFragment(content)
-            instance.searchContent = content
             return instance
         }
     }
@@ -62,13 +60,12 @@ class MainFragment(private val content: String) : RefreshLayoutFragment<MainView
                 when (newState) {
                     //滑动停止
                     RecyclerView.SCROLL_STATE_IDLE -> activity?.let {
-                        Glide.with(this@MainFragment).resumeRequests()
+                        Glide.with(it).resumeRequests()
                     }
-//                    RecyclerView.SCROLL_STATE_SETTLING -> activity?.let {
-//                        Glide.with(this@MainFragment).pauseRequests()
-//                    }
                     else -> {
-                        Glide.with(this@MainFragment).pauseRequests()
+                        activity?.let {
+                            Glide.with(it).pauseRequests()
+                        }
                     }
                 }
             }
@@ -82,7 +79,7 @@ class MainFragment(private val content: String) : RefreshLayoutFragment<MainView
     }
 
     override fun initValue() {
-        viewModel.searchContent.value = searchContent
+        viewModel.searchContent.value = content
         viewModel.initFatory()
         viewModel.listData.observe(viewLifecycleOwner, Observer {
             binding.imageAdapter?.submitList(it)
