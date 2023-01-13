@@ -64,6 +64,7 @@ object RetrofitClient {
                 .addHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.45 Safari/537.36") //
                 .addHeader("Accept-Language", "zh-CN,zh;q=0.9") //
                 .addHeader("Upgrade-insecure-Requests", "1") //
+//                .addHeader("Accept-Encoding", "identity") //
 //                .addHeader("Referrer-Policy", "no-referrer") //
 //                .addHeader("X-Content-Type-Options", "nosniff") //
 //                .addHeader("transfer-encoding", "chunked") //

@@ -13,5 +13,11 @@
         android:layout_marginTop="160dp"
         android:layout_gravity="center"
         android:text="网络重定向" />
-
+    <Button
+        android:layout_width="@dimen/common_ui_size_100"
+        android:layout_height="@dimen/common_ui_size_50"
+        android:onClick="onClick"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:text="content-length" />
 </LinearLayout>

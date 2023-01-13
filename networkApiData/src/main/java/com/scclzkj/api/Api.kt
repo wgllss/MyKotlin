@@ -21,4 +21,9 @@ interface Api {
 
     @GET("https://www.hifini.com/get_music.php?key=f64jyoHzZz8hxlhYVa0CUD9XmZq926FjKz9fVELdF299ItK547n3PLnwrTKamHGx")
     suspend fun getMusic(): Response<ResponseBody>
+
+//    @GET("https://gitee.com/wgllss888/wgllss-music-data-source/raw/master/jar/classes3_dex.jar")
+    @GET("https://raw.githubusercontent.com/wgllss/atar-skin-eclipse/master/skin/purple/download_skin.apk")
+//    @GET("http://192.168.3.21:8080/assets/music_plugin/classes3_dex.jar")
+    suspend fun getLength(): Response<ResponseBody>
 }

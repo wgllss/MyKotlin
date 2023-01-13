@@ -50,8 +50,12 @@ class TestNetActivity : BaseActivity(), View.OnClickListener {
                         "    \"orderType\": 2,\n" +
                         "    \"authCode\": \"\"\n" +
                         "}"
-                val requestBody: RequestBody = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), body)
-                val result = api.prePay(requestBody)
+//                val requestBody: RequestBody = RequestBody.create("application/json; charset=utf-8".toMediaTypeOrNull(), body)
+//                val result = api.prePay(requestBody)
+                val result = api.getLength()
+
+
+
                 logE("result---> ${result}")
             } catch (e: Exception) {
                 e.printStackTrace()

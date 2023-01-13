@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.myapplication.R
 import com.example.myapplication.base.fragment.RefreshLayoutFragment
 import com.example.myapplication.databinding.MainFragmentBinding
@@ -15,7 +16,7 @@ import com.scwang.smart.refresh.layout.api.RefreshLayout
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainFragmentBinding>() {
+class MainFragment(private val content: String) : RefreshLayoutFragment<MainViewModel, MainFragmentBinding>() {
     var searchContent: String? = null
 
     companion object {
@@ -50,8 +51,26 @@ class MainFragment(content: String) : RefreshLayoutFragment<MainViewModel, MainF
                 imgList.add(viewModel.listData?.value?.get(position)!!.middleURL!!)
                 ShowImageActivity.startShowImage(activity, imgList, 0)
             }
+
             override fun onItemLongClickListener(viewHolder: RecyclerView.ViewHolder?, position: Int) {
 //                Log.e("wg", "onItemLongClickListener position = $position");
+            }
+        })
+        binding.recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+                android.util.Log.e("wg", "newState:$newState")
+                when (newState) {
+                    //滑动停止
+                    RecyclerView.SCROLL_STATE_IDLE -> activity?.let {
+                        Glide.with(this@MainFragment).resumeRequests()
+                    }
+//                    RecyclerView.SCROLL_STATE_SETTLING -> activity?.let {
+//                        Glide.with(this@MainFragment).pauseRequests()
+//                    }
+                    else -> {
+                        Glide.with(this@MainFragment).pauseRequests()
+                    }
+                }
             }
         })
 
