@@ -20,4 +20,13 @@
         android:layout_marginTop="20dp"
         android:layout_gravity="center"
         android:text="content-length" />
+
+    <Button
+        android:id="@+id/flowON"
+        android:layout_width="@dimen/common_ui_size_100"
+        android:layout_height="@dimen/common_ui_size_50"
+        android:onClick="onClick3"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:text="flow" />
 </LinearLayout>
