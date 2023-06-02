@@ -49,6 +49,9 @@ class HomeActivity : BaseMvvmActivity<HomeViewModel, ActivityHomeBinding>(), Vie
             R.id.net -> {
                 startActivity(Intent(this, TestNetActivity::class.java))
             }
+            R.id.exoPlayer -> {
+                startActivity(Intent(this, ExoplayerActivity::class.java))
+            }
         }
     }
 }

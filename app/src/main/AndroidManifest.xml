@@ -18,10 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name="com.example.myapplication.ui.main.activity.TestInflaterActivity"
+            android:name="com.example.myapplication.ui.main.activity.ExoplayerActivity"
             android:exported="false" />
         <activity
-            android:name="com.example.myapplication.ui.main.activity.TestLayoutActivity"
+            android:name=".TestInflaterActivity"
+            android:exported="false" />
+        <activity
+            android:name=".TestLayoutActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.activity.ShowImageActivity"
