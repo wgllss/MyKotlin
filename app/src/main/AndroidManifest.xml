@@ -21,17 +21,18 @@
             android:name="com.example.myapplication.ui.main.activity.ExoplayerActivity"
             android:exported="false" />
         <activity
-            android:name=".TestInflaterActivity"
+            android:name="com.example.myapplication.ui.main.activity.TestInflaterActivity"
             android:exported="false" />
         <activity
-            android:name=".TestLayoutActivity"
+            android:name="com.example.myapplication.ui.main.activity.TestLayoutActivity"
             android:exported="false" />
         <activity
             android:name=".ui.main.activity.ShowImageActivity"
             android:theme="@style/AppTheme" />
         <activity
             android:name=".ui.main.activity.HomeActivity"
-            android:theme="@style/AppTheme">
+            android:theme="@style/AppTheme"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
